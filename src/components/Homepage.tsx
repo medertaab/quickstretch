@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import StretchCard from "./StretchCard";
 
 export default function Homepage(props: any) {
