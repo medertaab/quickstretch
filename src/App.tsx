@@ -5,12 +5,7 @@ import Stretch from "./components/Stretch";
 
 function App() {
   const [mode, setMode] = useState("");
-  const allModes = [
-    "NECK_STRETCH",
-    "HAND_STRETCH",
-    "SHOULDER_STRETCH",
-    "BREATHING"
-  ];
+  // NECK_STRETCH/HAND_STRETCH/SHOULDER_STRETCH/BREATHING
 
   useEffect(() => {
     setMode("");

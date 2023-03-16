@@ -1,7 +1,8 @@
 interface Exercise {
   title: string;
   duration: number;
-  details: string
+  details: string,
+  images?: string[]
 }
 
 interface Stretch {
@@ -22,27 +23,33 @@ export const ALL_STRETCHES : Stretch  = {
       {
         title: "Left and right",
         duration: 30,
-        details: "Shoulders back, stretch as much as you can without discomfort"
+        details: "Sit with your shoulders back//Slowly rotate your head to each side as much as you can without discomfort//Hold for 2 seconds//Repeat with the other side",
+        images: ["./NECK_STRETCH/leftandright/1.png", "./NECK_STRETCH/leftandright/2.png", "./NECK_STRETCH/leftandright/1.png", "./NECK_STRETCH/leftandright/3.png"]
       }, {
         title: "Up and down",
         duration: 30,
-        details: "Hold your chest with your hands, when looking down tuck your chin to feel a stretch in the back of the neck"
+        details: "Hold your chest with your hands//Move your head to look up and down for 2 seconds each//When looking down tuck your chin to feel a stretch in the back of the neck",
+        images: ["./NECK_STRETCH/upanddown/1.png", "./NECK_STRETCH/upanddown/2.png", "./NECK_STRETCH/upanddown/1.png", "./NECK_STRETCH/upanddown/3.png"]
       }, {
         title: "Side to side",
         duration: 30,
-        details: "Stretch your neck by tilting your ears as high as you can and mkaing your neck longer"
+        details: "Stretch your neck by tilting your head towards each shoulder//Extend your neck to reach as high as you can with the elevated side's ear",
+        images: ["./NECK_STRETCH/sidetoside/1.png", "./NECK_STRETCH/sidetoside/2.png", "./NECK_STRETCH/sidetoside/1.png", "./NECK_STRETCH/sidetoside/3.png"]
       }, {
-        title: "Cellphone drill", 
+        title: "In and out", 
         duration: 30,
-        details: "Suck chin in then stretch it forward"
+        details: "Suck your chin in and hold for 2 seconds//Then stretch your head forward as far as you comfortably can for another 2 seconds",
+        images: ["./NECK_STRETCH/inandout/1.png", "./NECK_STRETCH/inandout/2.png", "./NECK_STRETCH/inandout/1.png", "./NECK_STRETCH/inandout/3.png"]
       }, {
         title: "Sliding head",
         duration: 30,
-        details: "Keep eyes on the same level"
+        details: "Keep eyes on the same level//Slide your head as far to each side as you can",
+        images: ["./NECK_STRETCH/sliding/1.png", "./NECK_STRETCH/sliding/2.png", "./NECK_STRETCH/sliding/3.png", "./NECK_STRETCH/sliding/2.png"]
       }, {
         title: "Half circle",
-        duration: 30,
-        details: "Lift your ear on one side, tuck your chin, then repeat with the other side"
+        duration: 5,
+        details: "Lift your ear on one side//Then slowly drop your head to tuck your chin, feeling your neck muscles extend//Repeat with the other side",
+        images: ["./NECK_STRETCH/halfcircle/1.png", "./NECK_STRETCH/halfcircle/2.png", "./NECK_STRETCH/halfcircle/3.png", "./NECK_STRETCH/halfcircle/2.png"]
       }
     ]
   }, HAND_STRETCH: {

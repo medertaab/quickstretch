@@ -1,27 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ALL_STRETCHES } from "../data/ALL_STRETCHES";
-import styled from "styled-components";
+import { ALL_STRETCHES } from "../assets/ALL_STRETCHES";
 import CompleteCard from "./CompleteCard";
 import Breathing from "./Breathing";
-
-const Timer = styled.div`
-  padding: 1rem;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  border: 2px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem auto;
-`;
-
-const ControlButtons = styled.div`
-  padding: 1rem;
-  border: 1px solid white;
-  width: fit-content;
-  margin: 0 auto;
-`;
+import Sprite from "./Sprite";
+import ArrowLeft from "../assets/arrow-left-solid.svg";
+import {
+  StretchPage,
+  Timer,
+  StartButton,
+  ControlButton,
+  ExerciseContainer
+} from "./Stretch.styled";
+import ExerciseInfo from "./ExerciseInfo";
 
 export default function Stretch(props: any) {
   const { mode, setMode } = props;
@@ -35,17 +25,15 @@ export default function Stretch(props: any) {
   const [status, setStatus] = useState("off"); // on,off,break,pause
   const [isPaused, setIsPaused] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-
-  function isLastExercise() {
-    return (
-      data.exercises.indexOf(currentExercise) === data.exercises.length - 1
-    );
-  }
+  const [isLast, setIsLast] = useState(false);
+  const duration = data.exercises.reduce((acc, val) => {
+    return acc = acc + val.duration + 5
+  }, 0)
 
   useEffect(() => {
     // When exercise ends
     if (seconds === 0 && status === "on") {
-      if (isLastExercise()) {
+      if (isLast) {
         setIsComplete(true);
         handleStop();
       } else {
@@ -61,13 +49,20 @@ export default function Stretch(props: any) {
     }
   }, [status, seconds]);
 
+  useEffect(() => {
+    if (data.exercises.indexOf(currentExercise) === data.exercises.length - 1) {
+      setIsLast(true);
+    }
+  }, [data, currentExercise]);
+
   // Start button
   function handleStart() {
     if (currentExercise) return;
+    setIsLast(false);
     setIsComplete(false);
-    setStatus("on");
+    setStatus("break");
     setCurrentExercise(data.exercises[0]);
-    setSeconds(data.exercises[0].duration);
+    setSeconds(data.breakDuration);
     handleTimer.start();
   }
 
@@ -84,7 +79,9 @@ export default function Stretch(props: any) {
 
   // Skip button
   function handleSkip() {
-    if (isLastExercise()) return;
+    if (isLast) return;
+    if (status === "off") return;
+    setIsPaused(false)
     clearInterval(timer.current);
     timer.current = 0;
     setCurrentExercise((prev: any) => {
@@ -123,44 +120,54 @@ export default function Stretch(props: any) {
       }
     },
     pause: function () {
+      if (status === "off") return
       setIsPaused(true);
       clearInterval(timer.current);
       timer.current = 0;
     },
     stop: function () {
+      setIsPaused(false);
+      setIsLast(false)
       clearInterval(timer.current);
       timer.current = 0;
-      setSeconds(0);
+      setSeconds(null);
     },
   };
 
   return (
-    <>
-      <button type="button" onClick={() => setMode("")}>
-        Go back
-      </button>
+    <StretchPage>
+      <a className="button-back" href="/">
+        <img src={ArrowLeft}></img>
+      </a>
+
       <h2>{data.title}</h2>
-      <p>{data.details}</p>
+      <p className="stretch-details">{data.details}</p>
+      <p>Duration: {Math.round((duration/60)*2)/2} min</p>
 
-      <p>{status}</p>
+      <ExerciseContainer>
+        <Sprite data={currentExercise}/>
+        {currentExercise && <ExerciseInfo data={data} currentExercise={currentExercise} status={status}/>}
+      </ExerciseContainer>
 
-      <Timer>{seconds}</Timer>
+      {status === "off" && <StartButton onClick={handleStart} />}
+      {status !== "off" && (
+        <Timer isPaused={isPaused} status={status}>
+          {seconds}
+        </Timer>
+      )}
 
-      <h3>{currentExercise && currentExercise.title}</h3>
-      <p>{currentExercise && currentExercise.details}</p>
-      <h4>{status === "break" && "Get ready"}</h4>
-      <h4>{isPaused && "Paused"}</h4>
+      <div className="controlButtons">
+        {isPaused && <ControlButton title="Resume" onClick={handleResume}/>}
+        {!isPaused && <ControlButton title="Pause" onClick={handlePause} status={status}/>}
+        <ControlButton title="Stop" onClick={handleStop} status={status}/>
+        <ControlButton title="Skip" onClick={handleSkip} isLast={isLast} status={status}/>
+      </div>
 
-      {status === "off" && <button onClick={handleStart}>Start</button>}
+      <div className="exercise-text">
+        <h4>{isPaused && "Paused"}</h4>
+      </div>
 
-      <ControlButtons>
-        <button onClick={handlePause}>Pause</button>
-        <button onClick={handleResume}>Resume</button>
-        <button onClick={handleStop}>Stop</button>
-        <button onClick={handleSkip}>Skip</button>
-      </ControlButtons>
-
-      {isComplete && <CompleteCard />}
-    </>
+      {isComplete && <CompleteCard title={data.title} setIsComplete={setIsComplete}/>}
+    </StretchPage>
   );
 }
