@@ -2,16 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { ALL_STRETCHES } from "../assets/ALL_STRETCHES";
 import CompleteCard from "./CompleteCard";
 import Breathing from "./Breathing";
-import Sprite from "./Sprite";
 import ArrowLeft from "../assets/arrow-left-solid.svg";
-import {
-  StretchPage,
-  Timer,
-  StartButton,
-  ControlButton,
-  ExerciseContainer
-} from "./Stretch.styled";
-import ExerciseInfo from "./ExerciseInfo";
+import { StretchPage, ProgressCircle, Timer } from "./styles/Stretch.styled";
+import ExerciseCard from "./ExerciseCard";
+import ControlButton from "./ControlButton";
+import StartButton from "./StartButton";
+import ToggleButton from "./ToggleButton";
+import styled from "styled-components";
 
 export default function Stretch(props: any) {
   const { mode, setMode } = props;
@@ -19,25 +16,48 @@ export default function Stretch(props: any) {
   const data = ALL_STRETCHES[mode];
 
   const [currentExercise, setCurrentExercise] = useState<any>(null);
-
   const timer = useRef<number>();
   const [seconds, setSeconds] = useState<number | null>(null);
   const [status, setStatus] = useState("off"); // on,off,break,pause
   const [isPaused, setIsPaused] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [isLast, setIsLast] = useState(false);
+  const [progress, setProgress] = useState<any>({});
+  const [autoplay, setAutoplay] = useState(true);
   const duration = data.exercises.reduce((acc, val) => {
-    return acc = acc + val.duration + 5
-  }, 0)
+    return (acc = acc + val.duration + 5);
+  }, 0);
+
+  //Handle routing/links
+  window.history.pushState({}, "", `/${mode.toLowerCase()}`);
+
+  useEffect(() => {
+    clearProgress();
+  }, []);
 
   useEffect(() => {
     // When exercise ends
     if (seconds === 0 && status === "on") {
+      // Tracking progress
+      const index = data.exercises.indexOf(currentExercise);
+      setProgress({ ...progress, [index]: true });
+
+      // After each exercise
       if (isLast) {
         setIsComplete(true);
-        handleStop();
+        setStatus("off");
+        setCurrentExercise(null);
+        handleTimer.stop();
       } else {
-        takeBreak();
+        if (!autoplay) {
+          handleTimer.pause();
+          setCurrentExercise((prev: any) => {
+            return data.exercises[data.exercises.indexOf(prev) + 1];
+          });
+          setSeconds(currentExercise.duration);
+        } else {
+          takeBreak();
+        }
       }
     }
 
@@ -47,7 +67,7 @@ export default function Stretch(props: any) {
       setSeconds(currentExercise.duration);
       handleTimer.start();
     }
-  }, [status, seconds]);
+  }, [status, seconds, progress, currentExercise]);
 
   useEffect(() => {
     if (data.exercises.indexOf(currentExercise) === data.exercises.length - 1) {
@@ -58,12 +78,21 @@ export default function Stretch(props: any) {
   // Start button
   function handleStart() {
     if (currentExercise) return;
+
+    clearProgress();
     setIsLast(false);
     setIsComplete(false);
-    setStatus("break");
     setCurrentExercise(data.exercises[0]);
-    setSeconds(data.breakDuration);
-    handleTimer.start();
+
+    if (autoplay) {
+      setStatus("break");
+      setSeconds(data.breakDuration);
+      handleTimer.start();
+    } else {
+      setStatus("on");
+      setSeconds(data.exercises[0].duration);
+      setIsPaused(true);
+    }
   }
 
   // Pause button
@@ -81,7 +110,7 @@ export default function Stretch(props: any) {
   function handleSkip() {
     if (isLast) return;
     if (status === "off") return;
-    setIsPaused(false)
+    setIsPaused(false);
     clearInterval(timer.current);
     timer.current = 0;
     setCurrentExercise((prev: any) => {
@@ -97,6 +126,7 @@ export default function Stretch(props: any) {
     setStatus("off");
     setCurrentExercise(null);
     handleTimer.stop();
+    clearProgress();
   }
 
   // Change to break & set next exercise
@@ -107,6 +137,14 @@ export default function Stretch(props: any) {
     });
     setSeconds(data.breakDuration);
     handleTimer.start();
+  }
+
+  function clearProgress() {
+    setProgress(
+      data.exercises.reduce((acc, val, index) => {
+        return { ...acc, [index]: false };
+      }, {})
+    );
   }
 
   // Timer controller
@@ -120,14 +158,14 @@ export default function Stretch(props: any) {
       }
     },
     pause: function () {
-      if (status === "off") return
+      if (status === "off") return;
       setIsPaused(true);
       clearInterval(timer.current);
       timer.current = 0;
     },
     stop: function () {
       setIsPaused(false);
-      setIsLast(false)
+      setIsLast(false);
       clearInterval(timer.current);
       timer.current = 0;
       setSeconds(null);
@@ -141,33 +179,63 @@ export default function Stretch(props: any) {
       </a>
 
       <h2>{data.title}</h2>
-      <p className="stretch-details">{data.details}</p>
-      <p>Duration: {Math.round((duration/60)*2)/2} min</p>
+      <p className="stretch-details">
+        {data.details}. Duration: {Math.round((duration / 60) * 2) / 2}min
+      </p>
 
-      <ExerciseContainer>
-        <Sprite data={currentExercise}/>
-        {currentExercise && <ExerciseInfo data={data} currentExercise={currentExercise} status={status}/>}
-      </ExerciseContainer>
+      <ExerciseCard
+        data={data}
+        currentExercise={currentExercise}
+        status={status}
+        seconds={seconds}
+        autoplay={autoplay}
+      />
+
+      <div className="under-exercise">
+        <div className="progress-circles">
+          {Object.keys(progress).map((key) => {
+            return <ProgressCircle complete={progress[key]} />;
+          })}
+        </div>
+        <ToggleButton on={autoplay} toggle={() => setAutoplay(!autoplay)}>
+          Autoplay
+        </ToggleButton>
+      </div>
 
       {status === "off" && <StartButton onClick={handleStart} />}
       {status !== "off" && (
-        <Timer isPaused={isPaused} status={status}>
+        <Timer isPaused={isPaused} status={status} autoplay={autoplay}>
           {seconds}
         </Timer>
       )}
 
-      <div className="controlButtons">
-        {isPaused && <ControlButton title="Resume" onClick={handleResume}/>}
-        {!isPaused && <ControlButton title="Pause" onClick={handlePause} status={status}/>}
-        <ControlButton title="Stop" onClick={handleStop} status={status}/>
-        <ControlButton title="Skip" onClick={handleSkip} isLast={isLast} status={status}/>
+      <div className="control-buttons-container">
+        <ControlButton title="Stop" onClick={handleStop} status={status} />
+        {isPaused && autoplay && (
+          <ControlButton title="Resume" onClick={handleResume} />
+        )}
+        {isPaused && !autoplay && (
+          <ControlButton title="Start" onClick={handleResume} />
+        )}
+        {!isPaused && (
+          <ControlButton title="Pause" onClick={handlePause} status={status} />
+        )}
+        <ControlButton
+          title="Skip"
+          onClick={handleSkip}
+          isLast={isLast}
+          status={status}
+        />
       </div>
 
-      <div className="exercise-text">
-        <h4>{isPaused && "Paused"}</h4>
-      </div>
-
-      {isComplete && <CompleteCard title={data.title} setIsComplete={setIsComplete}/>}
+      {isComplete && (
+        <CompleteCard
+          mode={mode}
+          title={data.title}
+          setIsComplete={setIsComplete}
+          progress={progress}
+        />
+      )}
     </StretchPage>
   );
 }

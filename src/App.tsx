@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Homepage from "./components/Homepage";
+import Navbar from "./components/Navbar";
 import Stretch from "./components/Stretch";
 
 function App() {
   const [mode, setMode] = useState("");
-  // NECK_STRETCH/HAND_STRETCH/SHOULDER_STRETCH/BREATHING
 
+  //Handle links
   useEffect(() => {
-    setMode("");
+    if (window.location.pathname) {
+      setMode(window.location.pathname.toUpperCase().substring(1))
+    } else {
+      setMode("");
+    }
   }, []);
 
   return (
     <div className="App">
+      <Navbar />
       <main>
         {!mode && <Homepage setMode={setMode} />}
         {mode && <Stretch mode={mode} setMode={setMode} />}

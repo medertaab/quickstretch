@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Background from "./Background";
-import StretchCard from "./StretchCard";
+import Disclaimer from "./Disclaimer";
+import ModeButton from "./ModeButton";
 
 const HomePageStyled = styled.div`
   width: 80%;
@@ -11,6 +12,7 @@ const HomePageStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 3rem 0;
 
   .logo {
     margin: 0;
@@ -48,12 +50,13 @@ export default function Homepage(props: any) {
       <p className="prompt">Pick an exercise to start:</p>
 
       <ul className="mode-list">
-        <StretchCard title="Neck stretch" setMode={setMode} mode="NECK_STRETCH"/>
-        <StretchCard title="Hand stretch" setMode={setMode} mode="HAND_STRETCH"/>
-        <StretchCard title="Shoulder stretch" setMode={setMode} mode="SHOULDER_STRETCH"/>
-        <StretchCard title="Breathing exercise" setMode={setMode} mode="BREATHING"/>
+        <ModeButton title="Neck stretch" setMode={setMode} mode="NECK_STRETCH"/>
+        <ModeButton title="Hand stretch" setMode={setMode} mode="HAND_STRETCH"/>
+        <ModeButton title="Shoulder stretch" setMode={setMode} mode="SHOULDER_STRETCH"/>
+        <ModeButton title="Breathing exercise" setMode={setMode} mode="BREATHING"/>
       </ul>
       <Background />
+      <Disclaimer />
     </HomePageStyled>
   );
 }

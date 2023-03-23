@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import StarShape from '../assets/star_shape.svg'
-import Gradient from '../assets/gradient.jpg'
 
 export default function Background() {
   const FlowingBackground = styled.div`
@@ -15,7 +14,7 @@ export default function Background() {
     align-items: center;
 
     svg {
-      fill: var(--accent-color);
+      fill: var(--accent);
       animation: fade-in 0.5s ease-in, rotate 10s infinite linear;
       filter: blur(10px);
       width: 80%;
