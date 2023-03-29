@@ -36,6 +36,16 @@ export default function Background() {
       opacity: 30%;
      }
     }
+
+    @keyframes pulsate {
+      0% {
+        fill: #92e723;
+      } 50% {
+        fill: #b9df11;
+      } 100% {
+        fill: #92e723;
+      }
+    }
   `
   
   return (
