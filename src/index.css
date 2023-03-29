@@ -20,6 +20,8 @@
   font-family: 'Poppins', sans-serif;
 }
 
+html, body { height: 100% }
+
 h1, h2, h3, h4, h5, h6, p, span, label {
   margin: 0;
   color: var(--default-black);
@@ -58,6 +60,20 @@ button {
 }
 
 @keyframes slide-up {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0%;
+  } 100% {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+}
+
+.slide-up-fast {
+  animation: slide-up 0.15s ease-in;
+}
+
+@keyframes slide-up-fast {
   0% {
     transform: translateY(1rem);
     opacity: 0%;

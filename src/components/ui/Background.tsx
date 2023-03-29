@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import StarShape from '../assets/star_shape.svg'
 
 export default function Background() {
   const FlowingBackground = styled.div`

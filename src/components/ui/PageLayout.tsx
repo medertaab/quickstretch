@@ -14,7 +14,8 @@ export default function PageLayout({children} : any) {
 }
 
 const PageLayoutStyled = styled.div`
-  min-height: 100vh;
+  height: 100vh;
+  min-height: -webkit-fill-available;
   width: 100%;
   max-width: var(--max-screen);
   box-sizing: border-box;

@@ -4,43 +4,44 @@ import ToggleButton from "./ui/ToggleButton";
 import { useTheme } from "../hooks/ThemeContext";
 
 export default function Menu(props: any) {
-  const {theme, toggleTheme } = useTheme() as any
+  const { theme, toggleTheme } = useTheme() as any;
   const { setOpenMenu } = props;
-  const [autoplay, setAutoplay] = useState(localStorage.getItem("autoplay"))
+  const [autoplay, setAutoplay] = useState(localStorage.getItem("autoplay"));
 
   useEffect(() => {
     if (autoplay === "true") {
-      localStorage.setItem("autoplay", "true")
+      localStorage.setItem("autoplay", "true");
     } else {
-      localStorage.setItem("autoplay", "false")
+      localStorage.setItem("autoplay", "false");
     }
-  }, [autoplay])
+  }, [autoplay]);
 
   function toggleAutoplay() {
     if (autoplay === "true") {
-      setAutoplay("false")
+      setAutoplay("false");
     } else {
-      setAutoplay("true")
+      setAutoplay("true");
     }
   }
 
   // Prevent bubbling
-  function menuClick(e : any) {
-    e.stopPropagation()
+  function menuClick(e: any) {
+    e.stopPropagation();
   }
 
   return (
-    <MenuStyled onClick={() => setOpenMenu(false)}>
+    <MenuStyled onClick={() => setOpenMenu(false)} className="slide-up-fast">
       <div className="menu-container" onClick={menuClick}>
-        <button 
-          type="button" 
-          onClick={() => setOpenMenu(false)}
-        >
-          ❌
+        <button type="button" onClick={() => setOpenMenu(false)}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
         </button>
 
-        <ToggleButton toggle={toggleTheme} on={theme === "dark"}>Dark mode</ToggleButton>
-        <ToggleButton toggle={toggleAutoplay} on={autoplay === "true"}>Exercise autoplay:</ToggleButton>
+        <ToggleButton toggle={toggleTheme} on={theme === "dark"}>
+          Dark mode
+        </ToggleButton>
+        <ToggleButton toggle={toggleAutoplay} on={autoplay === "true"}>
+          Exercise autoplay:
+        </ToggleButton>
 
         <div>
           <h3>Streaks:</h3>
@@ -53,7 +54,7 @@ export default function Menu(props: any) {
 const MenuStyled = styled.div`
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   background-color: #ffffff40;
   backdrop-filter: blur(5px);
   z-index: 5;
@@ -72,17 +73,20 @@ const MenuStyled = styled.div`
     border: 2px solid ${({ theme }) => theme.default};
 
     button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 1.5rem;
-    padding: 0.5rem;
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      color: var(--default-black);
 
-    &:hover {
-      cursor: pointer;
+      svg {
+        fill: var(--default-black);
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
-  }
-
-  
 `;

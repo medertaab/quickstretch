@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ALL_STRETCHES } from "../../assets/ALL_STRETCHES";
+import { ALL_STRETCHES } from "../../data/ALL_STRETCHES";
 import StartButton from "./StartButton";
 import CompleteCard from "./CompleteCard";
 import ExerciseCard from "./ExerciseCard";

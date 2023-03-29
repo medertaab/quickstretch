@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ALL_STRETCHES } from "../../assets/ALL_STRETCHES";
+import { ALL_STRETCHES } from "../../data/ALL_STRETCHES";
 import { Link } from "react-router-dom";
 
 export default function StretchCard(props: any) {

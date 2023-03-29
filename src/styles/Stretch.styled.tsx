@@ -59,6 +59,19 @@ export const StretchPage = styled.div`
     gap: 0.5rem;
     margin-top: 1rem;
   }
+
+  @media (width < 450px) {
+    .under-exercise {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .under-exercise > *:last-child {
+      position: relative;
+      width: fit-content;
+      margin-left: auto;
+    }
+  }
 `;
 
 export const ProgressCircle = styled.div<{ complete: Boolean }>`
