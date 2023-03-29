@@ -6,12 +6,18 @@ import ExerciseCard from "./ExerciseCard";
 import ControlButton from "./ControlButton";
 import ToggleButton from "../ui/ToggleButton";
 import Breathing from "../breathing/Breathing";
-import { StretchPage, ProgressCircle, Timer } from "../../styles/Stretch.styled";
+import {
+  StretchPage,
+  ProgressCircle,
+  Timer,
+} from "../../styles/Stretch.styled";
 import BackButton from "../ui/BackButton";
+import { useParams } from "react-router-dom";
+import PageLayout from "../ui/PageLayout";
 
 export default function Stretch(props: any) {
-  const { mode, setMode } = props;
-  if (mode === "BREATHING") return <Breathing {...props} />;
+  const { mode } = useParams();
+  if (mode === "breathing") return <Breathing {...props} />;
   const data = ALL_STRETCHES[mode];
 
   const [currentExercise, setCurrentExercise] = useState<any>(null);
@@ -23,19 +29,19 @@ export default function Stretch(props: any) {
   const [isLast, setIsLast] = useState(false);
   const [progress, setProgress] = useState<any>({});
   const [autoplay, setAutoplay] = useState(true);
-  const duration = data.exercises.reduce((acc, val) => {
+  const duration = data.exercises.reduce((acc : any, val : any) => {
     return (acc = acc + val.duration + 5);
   }, 0);
 
   // Handle routing/links + apply default autoplay setting
   useEffect(() => {
-    history.pushState(null, '', `/${mode.toLowerCase()}`)
+    history.pushState(null, "", `/${mode?.toLowerCase()}`);
     if (localStorage.getItem("autoplay") === "true") {
-      setAutoplay(true)
+      setAutoplay(true);
     } else {
-      setAutoplay(false)
+      setAutoplay(false);
     }
-  }, [])
+  }, []);
 
   // Start fresh
   useEffect(() => {
@@ -123,13 +129,13 @@ export default function Stretch(props: any) {
     setCurrentExercise((prev: any) => {
       return data.exercises[data.exercises.indexOf(prev) + 1];
     });
-    setStatus("break")
+    setStatus("break");
     if (autoplay) {
       setSeconds(data.breakDuration);
       handleTimer.start();
     } else {
-      setSeconds(currentExercise.duration)
-      handleTimer.pause()
+      setSeconds(currentExercise.duration);
+      handleTimer.pause();
     }
   }
 
@@ -153,7 +159,7 @@ export default function Stretch(props: any) {
 
   function clearProgress() {
     setProgress(
-      data.exercises.reduce((acc, val, index) => {
+      data.exercises.reduce((acc : any, val : any, index : any) => {
         return { ...acc, [index]: false };
       }, {})
     );
@@ -185,67 +191,73 @@ export default function Stretch(props: any) {
   };
 
   return (
-    <StretchPage>
-      <BackButton />
+    <PageLayout>
+      <StretchPage>
+        <BackButton />
 
-      <h2>{data.title}</h2>
-      <p className="stretch-details">
-        {data.details}. Duration: {Math.round((duration / 60) * 2) / 2}min
-      </p>
+        <h2>{data.title}</h2>
+        <p className="stretch-details">
+          {data.details}. Duration: {Math.round((duration / 60) * 2) / 2}min
+        </p>
 
-      <ExerciseCard
-        currentExercise={currentExercise}
-        status={status}
-        seconds={seconds}
-        autoplay={autoplay}
-        speed={data.speed}
-      />
-
-      <div className="under-exercise">
-        <div className="progress-circles">
-          {Object.keys(progress).map((key) => {
-            return <ProgressCircle complete={progress[key]} />;
-          })}
-        </div>
-        <ToggleButton on={autoplay} toggle={() => setAutoplay(!autoplay)}>
-          Autoplay
-        </ToggleButton>
-      </div>
-
-      {status === "off" && <StartButton onClick={handleStart} />}
-      {status !== "off" && (
-        <Timer isPaused={isPaused} status={status} autoplay={autoplay}>
-          {seconds}
-        </Timer>
-      )}
-
-      <div className="control-buttons-container">
-        <ControlButton title="Stop" onClick={handleStop} status={status} />
-        {isPaused && autoplay && (
-          <ControlButton title="Resume" onClick={handleResume} />
-        )}
-        {isPaused && !autoplay && (
-          <ControlButton title="Start" onClick={handleResume} />
-        )}
-        {!isPaused && (
-          <ControlButton title="Pause" onClick={handlePause} status={status} />
-        )}
-        <ControlButton
-          title="Skip"
-          onClick={handleSkip}
-          isLast={isLast}
+        <ExerciseCard
+          currentExercise={currentExercise}
           status={status}
+          seconds={seconds}
+          autoplay={autoplay}
+          speed={data.speed}
         />
-      </div>
 
-      {isComplete && (
-        <CompleteCard
-          mode={mode}
-          title={data.title}
-          setIsComplete={setIsComplete}
-          progress={progress}
-        />
-      )}
-    </StretchPage>
+        <div className="under-exercise">
+          <div className="progress-circles">
+            {Object.keys(progress).map((key) => {
+              return <ProgressCircle complete={progress[key]} />;
+            })}
+          </div>
+          <ToggleButton on={autoplay} toggle={() => setAutoplay(!autoplay)}>
+            Autoplay
+          </ToggleButton>
+        </div>
+
+        {status === "off" && <StartButton onClick={handleStart} />}
+        {status !== "off" && (
+          <Timer isPaused={isPaused} status={status} autoplay={autoplay}>
+            {seconds}
+          </Timer>
+        )}
+
+        <div className="control-buttons-container">
+          <ControlButton title="Stop" onClick={handleStop} status={status} />
+          {isPaused && autoplay && (
+            <ControlButton title="Resume" onClick={handleResume} />
+          )}
+          {isPaused && !autoplay && (
+            <ControlButton title="Start" onClick={handleResume} />
+          )}
+          {!isPaused && (
+            <ControlButton
+              title="Pause"
+              onClick={handlePause}
+              status={status}
+            />
+          )}
+          <ControlButton
+            title="Skip"
+            onClick={handleSkip}
+            isLast={isLast}
+            status={status}
+          />
+        </div>
+
+        {isComplete && (
+          <CompleteCard
+            mode={mode}
+            title={data.title}
+            setIsComplete={setIsComplete}
+            progress={progress}
+          />
+        )}
+      </StretchPage>
+    </PageLayout>
   );
 }

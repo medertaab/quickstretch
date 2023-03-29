@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components';
-import { buttonIcons } from '../../assets/buttonIcons';
+import React from "react";
+import styled from "styled-components";
+import { buttonIcons } from "../../assets/buttonIcons";
 
 export default function ControlButton(props: any) {
   const { title, onClick, isLast, status, autoplay } = props;
@@ -12,8 +12,8 @@ export default function ControlButton(props: any) {
         <span>{title}</span>
       </DisabledButton>
     );
-  } 
-  
+  }
+
   return (
     <StyledControlButton title={title} type="button" onClick={onClick}>
       {buttonIcons[title]}
@@ -22,7 +22,7 @@ export default function ControlButton(props: any) {
   );
 }
 
-const StyledControlButton = styled.button<{ title : String }>`
+const StyledControlButton = styled.button<{ title: String }>`
   height: 2rem;
   width: 6rem;
   min-width: fit-content;
@@ -39,18 +39,30 @@ const StyledControlButton = styled.button<{ title : String }>`
   cursor: pointer;
 
   &:hover {
-    background-color: ${(props) => props.title === "Resume" ? "var(--accent-transparent)" : "var(--accent)"};
-    background-color: ${(props) => props.title === "Start" ? "var(--accent-transparent)" : "var(--accent)"};
+    background-color: ${(props) =>
+      props.title === "Resume" ? "var(--accent-transparent)" : "var(--accent)"};
+    background-color: ${(props) =>
+      props.title === "Start" ? "var(--accent-transparent)" : "var(--accent)"};
+    span {
+      color: #353535;
+    }
+    svg {
+      fill: #353535;
+    }
   }
 
   svg {
     height: 55%;
     fill: var(--default-black);
+    transition: 0.1s ease-in-out;
   }
 
   span {
     font-size: 0.8rem;
     margin-left: 0.2rem;
+    color: ${(props) => props.title === "Resume" && "#353535"};
+    color: ${(props) => props.title === "Start" && "#353535"};
+    transition: 0.1s ease-in-out;
   }
 `;
 

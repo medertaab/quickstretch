@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { sprites, duration } from "../../assets/BREATHING";
+import { sprites, duration } from "../../assets/breathing";
 import { BreathingCircleStyled } from "../../styles/BreathingCricle.styled";
 
 export default function BreathingCircle(props: any) {

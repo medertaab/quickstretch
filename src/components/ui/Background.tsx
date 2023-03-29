@@ -14,7 +14,7 @@ export default function Background() {
     align-items: center;
 
     svg {
-      fill: var(--accent);
+      fill: #92e723;
       animation: fade-in 0.5s ease-in, rotate 17s infinite linear;
       filter: blur(10px);
       width: 80%;
@@ -38,8 +38,7 @@ export default function Background() {
      }
     }
   `
-
-
+  
   return (
     <FlowingBackground>
       <svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg">

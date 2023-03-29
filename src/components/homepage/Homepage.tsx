@@ -3,24 +3,27 @@ import styled from "styled-components";
 import Background from "../ui/Background";
 import Disclaimer from "./Disclaimer";
 import ModeButton from "./ModeButton";
+import Navbar from "../Navbar";
+import PageLayout from "../ui/PageLayout";
 
 export default function Homepage(props: any) {
   const { setMode } = props;
   return (
-    <HomePageStyled className="fade-in">
-      <h1 className="logo">🐰 QuickStretch</h1>
-      <p className="description">Easy way to relieve muscle tension and improve your wellbeing</p>
+    <PageLayout>
+      <HomePageStyled className="fade-in">
+        <h1 className="logo">🐰 QuickStretch</h1>
+        <p className="description">Easy way to relieve muscle tension and improve your wellbeing</p>
 
-      <p className="prompt">Pick an exercise to start:</p>
-      <ul className="mode-list">
-        <ModeButton title="Neck stretch" setMode={setMode} mode="NECK_STRETCH"/>
-        <ModeButton title="Hand stretch" setMode={setMode} mode="HAND_STRETCH"/>
-        <ModeButton title="Shoulder stretch" setMode={setMode} mode="SHOULDER_STRETCH"/>
-        <ModeButton title="Breathing exercise" setMode={setMode} mode="BREATHING"/>
-      </ul>
-      <Background />
-      <Disclaimer />
-    </HomePageStyled>
+        <p className="prompt">Pick an exercise to start:</p>
+        <ul className="mode-list">
+          <ModeButton title="Neck stretch" setMode={setMode} mode="neck_stretch"/>
+          <ModeButton title="Hand stretch" setMode={setMode} mode="hand_stretch"/>
+          <ModeButton title="Shoulder stretch" setMode={setMode} mode="shoulder_stretch"/>
+          <ModeButton title="Breathing exercise" setMode={setMode} mode="breathing"/>
+        </ul>
+        <Disclaimer />
+      </HomePageStyled>
+    </PageLayout>
   );
 }
 

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ToggleButton from "./ui/ToggleButton";
+import { useTheme } from "../hooks/ThemeContext";
 
 export default function Menu(props: any) {
-  const { setOpenMenu, theme, toggleTheme } = props;
+  const {theme, toggleTheme } = useTheme() as any
+  const { setOpenMenu } = props;
   const [autoplay, setAutoplay] = useState(localStorage.getItem("autoplay"))
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const MenuStyled = styled.div`
     min-height: 10rem;
     min-width: 15rem;
     background-color: var(--default-light);
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 8px #1f1f1f45;
     position: relative;

@@ -16,7 +16,7 @@ interface Stretch {
 }
 
 export const ALL_STRETCHES: Stretch = {
-  NECK_STRETCH: {
+  neck_stretch: {
     title: "Neck stretch",
     details:
       "This stretch will help with your neck mobility. Pull your shoulders back, keep your back straight and feet on the ground",
@@ -33,10 +33,10 @@ export const ALL_STRETCHES: Stretch = {
           "Repeat on the right side",
         ],
         images: [
-          "./NECK_STRETCH/leftandright/1.png",
-          "./NECK_STRETCH/leftandright/2.png",
-          "./NECK_STRETCH/leftandright/1.png",
-          "./NECK_STRETCH/leftandright/3.png",
+          "./neck_stretch/leftandright/1.png",
+          "./neck_stretch/leftandright/2.png",
+          "./neck_stretch/leftandright/1.png",
+          "./neck_stretch/leftandright/3.png",
         ],
       },
       {
@@ -49,10 +49,10 @@ export const ALL_STRETCHES: Stretch = {
           "Slowly lower your head and tuck your chin in towards your chest, feeling a stretch in the back of your neck",
         ],
         images: [
-          "./NECK_STRETCH/upanddown/1.png",
-          "./NECK_STRETCH/upanddown/2.png",
-          "./NECK_STRETCH/upanddown/1.png",
-          "./NECK_STRETCH/upanddown/3.png",
+          "./neck_stretch/upanddown/1.png",
+          "./neck_stretch/upanddown/2.png",
+          "./neck_stretch/upanddown/1.png",
+          "./neck_stretch/upanddown/3.png",
         ],
       },
       {
@@ -64,10 +64,10 @@ export const ALL_STRETCHES: Stretch = {
           "Repeat on the right side",
         ],
         images: [
-          "./NECK_STRETCH/sidetoside/1.png",
-          "./NECK_STRETCH/sidetoside/2.png",
-          "./NECK_STRETCH/sidetoside/1.png",
-          "./NECK_STRETCH/sidetoside/3.png",
+          "./neck_stretch/sidetoside/1.png",
+          "./neck_stretch/sidetoside/2.png",
+          "./neck_stretch/sidetoside/1.png",
+          "./neck_stretch/sidetoside/3.png",
         ],
       },
       {
@@ -79,10 +79,10 @@ export const ALL_STRETCHES: Stretch = {
           "Stretch your head forward as far as you comfortably can, feeling a stretch in the front of your neck",
         ],
         images: [
-          "./NECK_STRETCH/inandout/1.png",
-          "./NECK_STRETCH/inandout/2.png",
-          "./NECK_STRETCH/inandout/1.png",
-          "./NECK_STRETCH/inandout/3.png",
+          "./neck_stretch/inandout/1.png",
+          "./neck_stretch/inandout/2.png",
+          "./neck_stretch/inandout/1.png",
+          "./neck_stretch/inandout/3.png",
         ],
       },
       {
@@ -95,10 +95,10 @@ export const ALL_STRETCHES: Stretch = {
           "Repeat on the right side",
         ],
         images: [
-          "./NECK_STRETCH/sliding/1.png",
-          "./NECK_STRETCH/sliding/2.png",
-          "./NECK_STRETCH/sliding/3.png",
-          "./NECK_STRETCH/sliding/2.png",
+          "./neck_stretch/sliding/1.png",
+          "./neck_stretch/sliding/2.png",
+          "./neck_stretch/sliding/3.png",
+          "./neck_stretch/sliding/2.png",
         ],
       },
       {
@@ -110,15 +110,15 @@ export const ALL_STRETCHES: Stretch = {
           "Repeat on the other side",
         ],
         images: [
-          "./NECK_STRETCH/halfcircle/1.png",
-          "./NECK_STRETCH/halfcircle/2.png",
-          "./NECK_STRETCH/halfcircle/3.png",
-          "./NECK_STRETCH/halfcircle/2.png",
+          "./neck_stretch/halfcircle/1.png",
+          "./neck_stretch/halfcircle/2.png",
+          "./neck_stretch/halfcircle/3.png",
+          "./neck_stretch/halfcircle/2.png",
         ],
       },
     ],
   },
-  HAND_STRETCH: {
+  hand_stretch: {
     title: "Hand stretch",
     details:
       "These exercises can provide relief from hand, wrist and foreard pain, like that resulting from carpal tunnel syndrome",
@@ -133,7 +133,7 @@ export const ALL_STRETCHES: Stretch = {
           "Make a fist with each hand",
           "Bend both of them up and down as far as you can comfortably",
         ],
-        images: ["./HAND_STRETCH/fist1/1.png", "./HAND_STRETCH/fist1/2.png"],
+        images: ["./hand_stretch/fist1/1.png", "./hand_stretch/fist1/2.png"],
       },
       {
         title: "Side fist stretch",
@@ -142,7 +142,7 @@ export const ALL_STRETCHES: Stretch = {
           "Rotate your fists sideways so that your palms face each other",
           "Bend both fists away from and towards yourself as far as you can comfortably",
         ],
-        images: ["./HAND_STRETCH/fist2/1.png", "./HAND_STRETCH/fist2/2.png"],
+        images: ["./hand_stretch/fist2/1.png", "./hand_stretch/fist2/2.png"],
       },
       {
         title: "Wrist extension up",
@@ -152,7 +152,7 @@ export const ALL_STRETCHES: Stretch = {
           "Point your hand towards the ceiling",
           "Gently assist the stretch with your other hand",
         ],
-        images: ["./HAND_STRETCH/wrist1/1.png", "./HAND_STRETCH/wrist1/2.png"],
+        images: ["./hand_stretch/wrist1/1.png", "./hand_stretch/wrist1/2.png"],
       },
       {
         title: "Wrist flexion",
@@ -162,11 +162,11 @@ export const ALL_STRETCHES: Stretch = {
           "Point your hand towards the floor",
           "Gently assist the stretch with your other hand by pulling your hand towards your body",
         ],
-        images: ["./HAND_STRETCH/wrist2/1.png", "./HAND_STRETCH/wrist2/2.png"],
+        images: ["./hand_stretch/wrist2/1.png", "./hand_stretch/wrist2/2.png"],
       },
     ],
   },
-  SHOULDER_STRETCH: {
+  shoulder_stretch: {
     title: "Shoulder stretch",
     details:
       "These exercises can provide relief from hand, wrist and foreard pain, like that resulting from carpal tunnel syndrome",

@@ -5,7 +5,7 @@ export default function ToggleButton(props : any) {
   const { on, toggle, children } = props
   return (
     <Toggle on={on}>
-      {children}
+      <span className="label-text">{children}</span>
       <input type="checkbox" checked={on} onClick={toggle} />
       <span className="toggle-on">
         <span className="toggle-button"></span>
@@ -15,6 +15,10 @@ export default function ToggleButton(props : any) {
 }
 
 const Toggle = styled.label<{on : Boolean}>`
+
+  .label-text {
+    margin-right: 0.5rem;
+  }
 
   display: flex;
   align-items: center;
@@ -41,6 +45,7 @@ const Toggle = styled.label<{on : Boolean}>`
     left: 0;
     background-color: ${props => props.on ? "var(--accent-dark)" : "#b1b1b1"};
     position: relative;
+    margin-left: auto;
   }
 
   .toggle-button {

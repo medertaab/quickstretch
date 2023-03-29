@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ALL_STRETCHES } from "../../assets/ALL_STRETCHES";
+import { Link } from "react-router-dom";
 
 export default function StretchCard(props: any) {
   const { title, mode, setMode } = props;
@@ -11,18 +12,20 @@ export default function StretchCard(props: any) {
   const durationRounded = Math.round((duration / 60) * 2) / 2;
 
   return (
-    <StretchCardStyled href={`/${mode.toLowerCase()}`}>
-      <div className="images">
-        <img src={`/card_images/${mode}.png`} />
-        <img src={`/card_images/${mode}_under.png`} className="under-image"/>
-      </div>
-      <h2>{title}</h2>
-      {mode !== "BREATHING" && <p>{durationRounded} min</p>}
+    <StretchCardStyled>
+      <Link to={`${mode}`}>
+        <div className="images">
+          <img src={`/card_images/${mode}.png`} />
+          <img src={`/card_images/${mode}_under.png`} className="under-image" />
+        </div>
+        <h2>{title}</h2>
+        {mode !== "breathing" && <p>{durationRounded} min</p>}
+      </Link>
     </StretchCardStyled>
   );
 }
 
-const StretchCardStyled = styled.a`
+const StretchCardStyled = styled.li`
   list-style: none;
   width: 14rem;
   min-height: 185px;
@@ -38,15 +41,10 @@ const StretchCardStyled = styled.a`
   align-items: center;
   cursor: pointer;
   transition: 0.1s ease-in;
-
-  &:link {
-    text-decoration: none;
-  }
-
-  &:hover {
-    .under-image {
-      opacity: 100%;
-    }
+  
+  a {
+    width: 100%;
+    height: 100%;
   }
 
   h2 {
@@ -59,24 +57,33 @@ const StretchCardStyled = styled.a`
   }
 
   .images {
+    width: min-content;
     position: relative;
+    margin: 0.5rem auto 0 auto;
+  }
+
+  img {
+    height: 6rem;
+    transition: 0.2s ease-in-out;
+    
   }
 
   .under-image {
     position: absolute;
-    opacity: 0%;
-    transition: 0.2s ease-in-out;
-  }
- 
-  img {
     left: 0;
-    height: 6rem;
-    margin-top: 0.5rem;
+    opacity: 0%;
     transition: 0.2s ease-in-out;
     z-index: -1;
   }
 
+  &:hover {
+    .under-image {
+      opacity: 100%;
+      margin: 0 auto;
+    }
+  }
+
   @media (width < 600px) {
-    width: 80%
+    width: 80%;
   }
 `;
