@@ -17,9 +17,7 @@ import PageLayout from "../ui/PageLayout";
 
 export default function Stretch(props: any) {
   const { mode } = useParams();
-  if (mode === "breathing") return <Breathing {...props} />;
-  const data = ALL_STRETCHES[mode];
-
+  const data = mode ? ALL_STRETCHES[mode] : ALL_STRETCHES.neck_stretch;
   const [currentExercise, setCurrentExercise] = useState<any>(null);
   const timer = useRef<number>();
   const [seconds, setSeconds] = useState<number | null>(null);
@@ -32,17 +30,7 @@ export default function Stretch(props: any) {
   const duration = data.exercises.reduce((acc : any, val : any) => {
     return (acc = acc + val.duration + 5);
   }, 0);
-
-  // Handle routing/links + apply default autoplay setting
-  useEffect(() => {
-    history.pushState(null, "", `/${mode?.toLowerCase()}`);
-    if (localStorage.getItem("autoplay") === "true") {
-      setAutoplay(true);
-    } else {
-      setAutoplay(false);
-    }
-  }, []);
-
+  
   // Start fresh
   useEffect(() => {
     clearProgress();
