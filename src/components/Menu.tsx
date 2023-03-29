@@ -1,27 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import ToggleButton from "./ToggleButton";
+import ToggleButton from "./ui/ToggleButton";
 
 export default function Menu(props: any) {
-  const { setOpenMenu } = props;
+  const { setOpenMenu, theme, toggleTheme } = props;
+  const [autoplay, setAutoplay] = useState(localStorage.getItem("autoplay"))
+
+  useEffect(() => {
+    if (autoplay === "true") {
+      localStorage.setItem("autoplay", "true")
+    } else {
+      localStorage.setItem("autoplay", "false")
+    }
+  }, [autoplay])
+
+  function toggleAutoplay() {
+    if (autoplay === "true") {
+      setAutoplay("false")
+    } else {
+      setAutoplay("true")
+    }
+  }
+
+  // Prevent bubbling
+  function menuClick(e : any) {
+    e.stopPropagation()
+  }
+
   return (
-    <MenuStyled>
-      <div className="menu-container">
-        <button
-          className="close-button"
-          type="button"
+    <MenuStyled onClick={() => setOpenMenu(false)}>
+      <div className="menu-container" onClick={menuClick}>
+        <button 
+          type="button" 
           onClick={() => setOpenMenu(false)}
         >
           ❌
         </button>
 
-        <ToggleButton>
-          Dark mode
-        </ToggleButton>
-        <br/>
-        <ToggleButton>
-          Exercise autoplay:
-        </ToggleButton>
+        <ToggleButton toggle={toggleTheme} on={theme === "dark"}>Dark mode</ToggleButton>
+        <ToggleButton toggle={toggleAutoplay} on={autoplay === "true"}>Exercise autoplay:</ToggleButton>
 
         <div>
           <h3>Streaks:</h3>
@@ -50,10 +67,9 @@ const MenuStyled = styled.div`
     border-radius: 0.5rem;
     box-shadow: 0 2px 8px #1f1f1f45;
     position: relative;
-    border: 2px solid ${({theme}) => theme.default};
-  }
+    border: 2px solid ${({ theme }) => theme.default};
 
-  .close-button {
+    button {
     position: absolute;
     right: 0;
     top: 0;
@@ -64,4 +80,7 @@ const MenuStyled = styled.div`
       cursor: pointer;
     }
   }
+  }
+
+  
 `;

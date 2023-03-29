@@ -2,6 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Menu from "./Menu";
 
+export default function Navbar(props: any) {
+  const [openMenu, setOpenMenu] = useState(false);
+
+  return (
+    <>
+      <NavStyled>
+        <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </NavStyled>
+      {openMenu && <Menu setOpenMenu={setOpenMenu} {...props} />}
+    </>
+  );
+}
+
 const NavStyled = styled.nav`
   width: 100%;
   height: 2rem;
@@ -37,24 +54,3 @@ const NavStyled = styled.nav`
     margin-bottom: 0;
   }
 `;
-
-export default function Navbar(props: any) {
-  const [openMenu, setOpenMenu] = useState(false);
-
-  function toggleMenu() {
-    openMenu ? setOpenMenu(false) : setOpenMenu(true)
-  }
-  
-  return (
-    <>
-      <NavStyled>
-        <button className="menu-toggle" onClick={toggleMenu}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </NavStyled>
-      {openMenu && <Menu setOpenMenu={setOpenMenu} {...props}/>}
-    </>
-  );
-}
