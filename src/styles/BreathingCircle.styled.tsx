@@ -11,7 +11,7 @@ export const BreathingCircleStyled = styled.div`
   .sprite {
     z-index: 2;
     position: absolute;
-    transform: scale(80%);
+    transform: scale(75%);
   }
 
   .topCircle {
@@ -47,7 +47,7 @@ export const BreathingCircleStyled = styled.div`
 
   .bottomCircle {
     position: absolute;
-    aspect-ratio: 1;
+    aspect-ratio: 1/1;
     height: 200px;
     background-color: rgba(255, 255, 255, 0.368);
     border-radius: 50%;

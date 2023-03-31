@@ -34,7 +34,7 @@ const HomePageStyled = styled.div`
     justify-content: center;
   }
   
-  @media (width < 600px) {
+  @media (max-width: 600px) {
     margin: 2rem;
   }
 `;

@@ -69,7 +69,8 @@ export const TextData = styled.div<{ status: String }>`
     font-weight: 700;
   }
 
-  @media (width < 600px) {
+  @media (max-width: 600px) {
+    max-width: 100%;
     p {
       display: ${(props: any) => props.status !== "off" && "none"};
     }

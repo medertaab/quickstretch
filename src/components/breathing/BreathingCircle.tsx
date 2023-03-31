@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { sprites, duration } from "../../data/breathing";
-import { BreathingCircleStyled } from "../../styles/BreathingCricle.styled";
+import { BreathingCircleStyled } from "../../styles/BreathingCircle.styled";
 
 export default function BreathingCircle(props: any) {
   const { status, breathingRef, setStatus } = props;

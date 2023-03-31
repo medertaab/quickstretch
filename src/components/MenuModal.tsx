@@ -52,7 +52,7 @@ export default function Menu(props: any) {
         <h3>Current streaks:</h3>
         <ul className="streaks">
           {Object.keys(currentStreaks).length < 1 && (
-            "None right now"
+            "Complete an exercise to get a streak going"
           )}
           {Object.keys(currentStreaks).map((key) => {
             return (
@@ -119,6 +119,7 @@ const MenuStyled = styled.div`
       margin: 0;
       padding: 0;
       margin-top: 0.5rem;
+      font-size: 0.9rem;
 
       li {
         display: flex;
