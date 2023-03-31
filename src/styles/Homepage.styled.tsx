@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const HomePageStyled = styled.div`
-  height: 100%;
   width: 80%;
   text-align: center;
   margin: 0 auto;
