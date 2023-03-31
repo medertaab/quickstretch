@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Menu from "./Menu";
+import MenuModal from "./MenuModal";
 
 export default function Navbar(props: any) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -14,7 +14,7 @@ export default function Navbar(props: any) {
           <span></span>
         </button>
       </NavStyled>
-      {openMenu && <Menu setOpenMenu={setOpenMenu} {...props} />}
+      {openMenu && <MenuModal setOpenMenu={setOpenMenu} {...props} />}
     </>
   );
 }

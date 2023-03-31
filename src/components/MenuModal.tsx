@@ -74,6 +74,7 @@ export default function Menu(props: any) {
 const MenuStyled = styled.div`
   height: 100%;
   width: 100%;
+  top: 0;
   position: fixed;
   background-color: #ffffff40;
   backdrop-filter: blur(5px);
