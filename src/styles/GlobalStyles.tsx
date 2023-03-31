@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { useTheme } from "../hooks/ThemeContext";
 
-import React from 'react'
-
 export default function GlobalStyles() {
   const {theme} = useTheme() as any
   if (theme === "light") {

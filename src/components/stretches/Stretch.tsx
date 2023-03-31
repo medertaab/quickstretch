@@ -5,7 +5,6 @@ import CompleteCard from "./CompleteCard";
 import ExerciseCard from "./ExerciseCard";
 import ControlButton from "./ControlButton";
 import ToggleButton from "../ui/ToggleButton";
-import Breathing from "../breathing/Breathing";
 import {
   StretchPage,
   ProgressCircle,
@@ -14,9 +13,11 @@ import {
 import BackButton from "../ui/BackButton";
 import { useParams } from "react-router-dom";
 import PageLayout from "../ui/PageLayout";
+import { useAutoplay } from "../../hooks/AutoplayContext";
 
 export default function Stretch(props: any) {
   const { mode } = useParams();
+  const { autoplay } = useAutoplay() as any;
   const data = mode ? ALL_STRETCHES[mode] : ALL_STRETCHES.neck_stretch;
   const [currentExercise, setCurrentExercise] = useState<any>(null);
   const timer = useRef<number>();
@@ -26,7 +27,7 @@ export default function Stretch(props: any) {
   const [isComplete, setIsComplete] = useState(false);
   const [isLast, setIsLast] = useState(false);
   const [progress, setProgress] = useState<any>({});
-  const [autoplay, setAutoplay] = useState(true);
+  const [currentAutoplay, setCurrentAutoplay] = useState(autoplay);
   const duration = data.exercises.reduce((acc : any, val : any) => {
     return (acc = acc + val.duration + 5);
   }, 0);
@@ -202,7 +203,7 @@ export default function Stretch(props: any) {
               return <ProgressCircle complete={progress[key]} />;
             })}
           </div>
-          <ToggleButton on={autoplay} toggle={() => setAutoplay(!autoplay)}>
+          <ToggleButton on={currentAutoplay} toggle={() => setCurrentAutoplay(!autoplay)}>
             Autoplay
           </ToggleButton>
         </div>

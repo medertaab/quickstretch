@@ -7,28 +7,30 @@ import Homepage from "./components/homepage/Homepage";
 import Stretch from "./components/stretches/Stretch";
 import GlobalStyles from "./styles/GlobalStyles";
 import Breathing from "./components/breathing/Breathing";
+import { AutoplayProvider } from "./hooks/AutoplayContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Homepage />
-  }, 
+    element: <Homepage />,
+  },
   {
     path: "/breathing",
-    element: <Breathing />
+    element: <Breathing />,
   },
   {
     path: "/:mode",
-    element: <Stretch />
-  }
-])
-
+    element: <Stretch />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider>
-      <GlobalStyles />
-      <RouterProvider router={router} />
+      <AutoplayProvider>
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      </AutoplayProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

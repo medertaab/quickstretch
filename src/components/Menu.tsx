@@ -2,50 +2,67 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ToggleButton from "./ui/ToggleButton";
 import { useTheme } from "../hooks/ThemeContext";
+import { useAutoplay } from "../hooks/AutoplayContext";
 
 export default function Menu(props: any) {
   const { theme, toggleTheme } = useTheme() as any;
+  const { autoplay, toggleAutoplay } = useAutoplay() as any;
   const { setOpenMenu } = props;
-  const [autoplay, setAutoplay] = useState(localStorage.getItem("autoplay"));
-
-  useEffect(() => {
-    if (autoplay === "true") {
-      localStorage.setItem("autoplay", "true");
-    } else {
-      localStorage.setItem("autoplay", "false");
-    }
-  }, [autoplay]);
-
-  function toggleAutoplay() {
-    if (autoplay === "true") {
-      setAutoplay("false");
-    } else {
-      setAutoplay("true");
-    }
-  }
 
   // Prevent bubbling
   function menuClick(e: any) {
     e.stopPropagation();
   }
 
+  // Make current streaks object
+  const currentStreaks = Object.keys(localStorage).reduce(
+    (acc: any, val: any) => {
+      const keys = Object.keys(localStorage);
+      if (val.includes("streak") && !val.includes("max")) {
+        const keyname = val.split("_")[0].toLowerCase();
+        acc[keyname] = localStorage.getItem(val);
+      }
+      return acc;
+    },
+    {}
+  );
+
   return (
     <MenuStyled onClick={() => setOpenMenu(false)} className="slide-up-fast">
       <div className="menu-container" onClick={menuClick}>
         <button type="button" onClick={() => setOpenMenu(false)}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+          </svg>
         </button>
 
         <ToggleButton toggle={toggleTheme} on={theme === "dark"}>
-          Dark mode
+          Dark mode:
         </ToggleButton>
-        <ToggleButton toggle={toggleAutoplay} on={autoplay === "true"}>
-          Exercise autoplay:
+        <ToggleButton toggle={toggleAutoplay} on={autoplay}>
+          Default autoplay:
         </ToggleButton>
 
-        <div>
-          <h3>Streaks:</h3>
-        </div>
+        <h3>Current streaks:</h3>
+        <ul className="streaks">
+          {Object.keys(currentStreaks).map((key) => {
+            return (
+              <li>
+                <span>{key} stretch: </span>
+                <span>
+                  {currentStreaks[key]}{" "}
+                  {currentStreaks[key] === "1" ? "day" : "days"}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </MenuStyled>
   );
@@ -86,6 +103,27 @@ const MenuStyled = styled.div`
 
       &:hover {
         cursor: pointer;
+      }
+    }
+
+    h3 {
+      margin-top: 1rem;
+    }
+
+    .streaks {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      margin-top: 0.5rem;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        width: 10rem;
+      }
+
+      li *::first-letter {
+        text-transform: uppercase;
       }
     }
   }

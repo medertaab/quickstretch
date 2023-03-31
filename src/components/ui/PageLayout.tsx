@@ -5,7 +5,7 @@ import Background from './Background'
 
 export default function PageLayout({children} : any) {
   return (
-    <PageLayoutStyled>
+    <PageLayoutStyled className='page'>
       <Navbar />
       {children}
       <Background />
@@ -14,9 +14,9 @@ export default function PageLayout({children} : any) {
 }
 
 const PageLayoutStyled = styled.div`
-  height: 100vh;
-  min-height: -webkit-fill-available;
+  height: 100%;
   width: 100%;
+  padding-top: 2rem;
   max-width: var(--max-screen);
   box-sizing: border-box;
   display: flex;

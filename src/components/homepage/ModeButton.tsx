@@ -4,7 +4,7 @@ import { ALL_STRETCHES } from "../../data/ALL_STRETCHES";
 import { Link } from "react-router-dom";
 
 export default function StretchCard(props: any) {
-  const { title, mode, setMode } = props;
+  const { title, mode } = props;
 
   const duration = ALL_STRETCHES[mode]?.exercises.reduce((acc, val) => {
     return (acc = acc + val.duration + 5);
@@ -85,5 +85,9 @@ const StretchCardStyled = styled.li`
 
   @media (width < 600px) {
     width: 80%;
+  }
+
+  @media (width < 500px) {
+    width: 100%;
   }
 `;

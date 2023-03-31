@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 const HomePageStyled = styled.div`
+  height: 100%;
   width: 80%;
   text-align: center;
-  margin: 6rem auto 0 auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,6 +34,10 @@ const HomePageStyled = styled.div`
     gap: 1rem;
     max-width: max-content;
     justify-content: center;
+  }
+  
+  @media (width < 600px) {
+    margin-top: 15rem;
   }
 `;
 

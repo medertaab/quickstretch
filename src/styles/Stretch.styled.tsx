@@ -60,7 +60,7 @@ export const StretchPage = styled.div`
     margin-top: 1rem;
   }
 
-  @media (width < 450px) {
+  @media (width < 500px) {
     .under-exercise {
       display: flex;
       flex-direction: column;
