@@ -83,11 +83,11 @@ const StretchCardStyled = styled.li`
     }
   }
 
-  @media (width < 600px) {
+  @media (max-width: 600px) {
     width: 80%;
   }
 
-  @media (width < 500px) {
+  @media (max-width: 500px) {
     width: 100%;
   }
 `;

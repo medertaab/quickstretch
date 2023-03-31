@@ -35,7 +35,7 @@ const HomePageStyled = styled.div`
   }
   
   @media (width < 600px) {
-    margin-top: 2rem;
+    margin: 2rem;
   }
 `;
 

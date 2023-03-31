@@ -8,7 +8,7 @@ import ToggleButton from "../ui/ToggleButton";
 import {
   StretchPage,
   ProgressCircle,
-  Timer,
+  Timer, TextData
 } from "../../styles/Stretch.styled";
 import BackButton from "../ui/BackButton";
 import { useParams } from "react-router-dom";
@@ -184,10 +184,12 @@ export default function Stretch(props: any) {
       <StretchPage>
         <BackButton />
 
-        <h2>{data.title}</h2>
-        <p className="stretch-details">
-          {data.details}. Duration: {Math.round((duration / 60) * 2) / 2}min
-        </p>
+        <TextData status={status}>
+          <h2>{data.title}</h2>
+          <p>
+            {data.details}. Duration: {Math.round((duration / 60) * 2) / 2}min
+          </p>
+        </TextData>
 
         <ExerciseCard
           currentExercise={currentExercise}

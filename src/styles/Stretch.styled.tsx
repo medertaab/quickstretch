@@ -25,31 +25,18 @@ export const StretchPage = styled.div`
     }
   }
 
-  h2 {
-    font-size: 1.7rem;
-    font-weight: 700;
-  }
-
-  .stretch-details {
-    max-width: 80%;
-    margin-top: 0.1rem;
-    font-size: 0.7rem;
-    opacity: 80%;
-    font-style: italic;
-  }
-
   .under-exercise {
     position: relative;
     max-width: 31rem;
     width: 100%;
-    
   }
+
   .under-exercise > *:last-child {
     position: absolute;
     top: 0;
     right: 0;
   }
-  
+
   .progress-circles {
     margin-top: 0.5rem;
   }
@@ -60,16 +47,31 @@ export const StretchPage = styled.div`
     margin-top: 1rem;
   }
 
-  @media (width < 500px) {
-    .under-exercise {
-      display: flex;
-      flex-direction: column;
-    }
-
+  @media (max-width: 550px) {
     .under-exercise > *:last-child {
-      position: relative;
-      width: fit-content;
-      margin-left: auto;
+      right: -1rem;
+    }
+  }
+`;
+
+export const TextData = styled.div<{ status: String }>`
+  max-width: 80%;
+  margin-top: 0.1rem;
+
+  p {
+    font-size: 0.7rem;
+    opacity: 80%;
+    font-style: italic;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+
+  @media (width < 600px) {
+    p {
+      display: ${(props: any) => props.status !== "off" && "none"};
     }
   }
 `;
@@ -116,6 +118,6 @@ export const Timer = styled.div<{
     position: absolute;
     top: 1.5rem;
     font-size: 1.5rem;
-    opacity: 60%;    
+    opacity: 60%;
   }
 `;
