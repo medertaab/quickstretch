@@ -15,8 +15,8 @@ export default function StretchCard(props: any) {
     <StretchCardStyled>
       <Link to={`${mode}`}>
         <div className="images">
-          <img src={`/card_images/${mode}.png`} />
-          <img src={`/card_images/${mode}_under.png`} className="under-image" />
+          <img src={`/card_images/${mode}.png`} alt={`${mode}`}/>
+          <img src={`/card_images/${mode}_under.png`} className="under-image" alt={`${mode}-highlighted`}/>
         </div>
         <h2>{title}</h2>
         {mode !== "breathing" && <p>{durationRounded} min</p>}

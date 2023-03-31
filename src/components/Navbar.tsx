@@ -8,7 +8,7 @@ export default function Navbar(props: any) {
   return (
     <>
       <NavStyled>
-        <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)}>
+        <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)} name="Open menu">
           <span></span>
           <span></span>
           <span></span>

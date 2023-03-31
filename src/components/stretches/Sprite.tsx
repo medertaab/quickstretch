@@ -24,8 +24,8 @@ export default function Sprite(props:any) {
 
   return (
     <SpriteContainer>
-      {!sprite && <SpriteImage src="/neck_stretch/leftandright/1.png" height={200}></SpriteImage>}
-      {sprite && <SpriteImage src={sprite}></SpriteImage>}
+      {!sprite && <SpriteImage src="/neck_stretch/leftandright/1.png" height={200} alt="Execising bunny idle"></SpriteImage>}
+      {sprite && <SpriteImage src={sprite} alt={`${data.title} demonstration`}></SpriteImage>}
     </SpriteContainer>
   )
 }

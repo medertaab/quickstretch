@@ -30,7 +30,7 @@ export default function Menu(props: any) {
   return (
     <MenuStyled onClick={() => setOpenMenu(false)} className="slide-up-fast">
       <div className="menu-container" onClick={menuClick}>
-        <button type="button" onClick={() => setOpenMenu(false)}>
+        <button type="button" onClick={() => setOpenMenu(false)} name="Close menu">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -51,6 +51,9 @@ export default function Menu(props: any) {
 
         <h3>Current streaks:</h3>
         <ul className="streaks">
+          {Object.keys(currentStreaks).length < 1 && (
+            "None right now"
+          )}
           {Object.keys(currentStreaks).map((key) => {
             return (
               <li>
