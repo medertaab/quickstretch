@@ -8,7 +8,6 @@ const HomePageStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: rem 0;
 
   .logo {
     margin: 0;
@@ -36,7 +35,7 @@ const HomePageStyled = styled.div`
   }
   
   @media (width < 600px) {
-    margin-top: 15rem;
+    margin-top: 2rem;
   }
 `;
 
