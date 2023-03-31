@@ -19,7 +19,6 @@ function Breathing(props: any) {
         </p>
 
         <BreathingCard />
-        <Background />
       </BreathingExercise>
     </PageLayout>
   );

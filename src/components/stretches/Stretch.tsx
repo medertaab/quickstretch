@@ -14,6 +14,7 @@ import BackButton from "../ui/BackButton";
 import { useParams } from "react-router-dom";
 import PageLayout from "../ui/PageLayout";
 import { useAutoplay } from "../../hooks/AutoplayContext";
+import Background from "../ui/Background";
 
 export default function Stretch(props: any) {
   const { mode } = useParams();
