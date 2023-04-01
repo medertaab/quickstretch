@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { ThemeProvider } from "./hooks/ThemeContext";
-import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
-import Homepage from "./components/homepage/Homepage";
-import Stretch from "./components/stretches/Stretch";
 import GlobalStyles from "./styles/GlobalStyles";
-import Breathing from "./components/breathing/Breathing";
+import { ThemeProvider } from "./hooks/ThemeContext";
 import { AutoplayProvider } from "./hooks/AutoplayContext";
+import Stretch from "./components/stretches/Stretch";
+import Homepage from "./components/homepage/Homepage";
+import Breathing from "./components/breathing/Breathing";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 
 const router = createBrowserRouter([
   {

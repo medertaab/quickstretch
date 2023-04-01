@@ -169,55 +169,46 @@ export const ALL_STRETCHES: Stretch = {
   shoulder_stretch: {
     title: "Shoulder stretch",
     details:
-      "These exercises can provide relief from hand, wrist and foreard pain, like that resulting from carpal tunnel syndrome",
+      "These exercises exercises are beneficial in improving flexibility, reducing stiffness, and relieving tension in the shoulders and upper back",
     breakDuration: 5,
-    speed: 900,
+    speed: 400,
     exercises: [
       {
         title: "Shoulder rotation forward",
         duration: 20,
         instructions: ["Rotate your shoulders forward"],
+        images: ["./shoulder_stretch/rotateforward/1.png", "./shoulder_stretch/rotateforward/2.png", "./shoulder_stretch/rotateforward/3.png", "./shoulder_stretch/rotateforward/4.png", "./shoulder_stretch/rotateforward/5.png"]
       },
       {
         title: "Shoulder rotation backward",
         duration: 20,
         instructions: ["Rotate your shoulders backward"],
+        images: ["./shoulder_stretch/rotateback/1.png", "./shoulder_stretch/rotateback/2.png", "./shoulder_stretch/rotateback/3.png", "./shoulder_stretch/rotateback/4.png", "./shoulder_stretch/rotateback/5.png"]
       },
       {
         title: "Right cross arm stretch",
         duration: 30,
         instructions: [
-          "Bring your right arm forward and keep the elbow relaxed, use your left arm to gently pull the right arm across",
+          "Bring your right arm forward and keep the elbow relaxed", "Use your left arm to gently pull the right arm across",
         ],
+        images: ["./shoulder_stretch/crossright/1.png", "./shoulder_stretch/crossright/2.png"]
       },
       {
         title: "Left cross arm stretch",
         duration: 30,
         instructions: [
-          "Bring your left arm forward and keep the elbow relaxed, use your right arm to gently pull the right arm across",
+          "Bring your left arm forward and keep the elbow relaxed", "Use your right arm to gently pull the right arm across",
         ],
+        images: ["./shoulder_stretch/crossleft/1.png", "./shoulder_stretch/crossleft/2.png"]
       },
       {
         title: "Chest stretch",
         duration: 30,
         instructions: [
-          "Clasp your hands behind you and extend them down and back beghind you while pushing your chest forward",
+          "Clasp your hands behind you", "Extend them down and back behind you", "Gently keep pushing your chest forward",
         ],
-      },
-      {
-        title: "Right upper trap stretch",
-        duration: 30,
-        instructions: [
-          "Hold your right shoulder down and gently pull your head away with your left hand",
-        ],
-      },
-      {
-        title: "Left upper trap stretch",
-        duration: 30,
-        instructions: [
-          "Hold your left shoulder down and gently pull your head away with your right hand",
-        ],
-      },
+        images: ["./shoulder_stretch/chest/1.png", "./shoulder_stretch/chest/2.png"]
+      }
     ],
   },
 };

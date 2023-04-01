@@ -41,6 +41,8 @@ const StretchCardStyled = styled.li`
   align-items: center;
   cursor: pointer;
   transition: 0.1s ease-in;
+  position: relative;
+  overflow: hidden;
   
   a {
     width: 100%;
@@ -76,11 +78,14 @@ const StretchCardStyled = styled.li`
     z-index: -1;
   }
 
+ 
   &:hover {
     .under-image {
       opacity: 100%;
       margin: 0 auto;
     }
+
+    
   }
 
   @media (max-width: 600px) {

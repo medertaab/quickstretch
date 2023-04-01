@@ -52,6 +52,12 @@ export const BreathingExercise = styled.div`
       background-color: var(--accent-transparent);
     }
   }
+  
+  @media (max-width: 600px) {
+    .exercise-details {
+      max-width: 100%;
+    }
+  }
 `;
 
 

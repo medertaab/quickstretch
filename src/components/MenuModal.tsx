@@ -66,6 +66,7 @@ export default function Menu(props: any) {
             );
           })}
         </ul>
+        <span className="copyright">© MT</span>
       </div>
     </MenuStyled>
   );
@@ -120,6 +121,7 @@ const MenuStyled = styled.div`
       padding: 0;
       margin-top: 0.5rem;
       font-size: 0.9rem;
+      color: var(--default-black);
 
       li {
         display: flex;
@@ -131,5 +133,11 @@ const MenuStyled = styled.div`
         text-transform: uppercase;
       }
     }
+  }
+
+  .copyright {
+    font-size: 0.9rem;
+    float: right;
+    opacity: 50%;
   }
 `;
