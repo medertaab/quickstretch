@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import MenuModal from "./MenuModal";
 
@@ -8,7 +9,10 @@ export default function Navbar(props: any) {
   return (
     <>
       <NavStyled>
-        <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)} name="Open menu">
+        <Link to="/" className="logo">
+          <img src="logo.png"/>
+        </Link>
+        <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)} title="Open menu">
           <span></span>
           <span></span>
           <span></span>
@@ -21,13 +25,28 @@ export default function Navbar(props: any) {
 
 const NavStyled = styled.nav`
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   background-color: var(--default-light);
   border-bottom: 1px solid #21202213;
-  text-align: end;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0;
   z-index: 10;
+
+  .logo {
+    display: flex;
+  }
+
+  .logo img {
+    height: 2rem;
+    margin-left: 0.5rem;
+  }
+
+  .logo img:hover {
+    animation: shake 0.5s linear;
+  }
 
   svg {
     height: 80%;
@@ -52,5 +71,19 @@ const NavStyled = styled.nav`
 
   .menu-toggle span:last-child {
     margin-bottom: 0;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(0)
+    } 40% {
+      transform: rotate(-10deg)
+    } 70% {
+      transform: rotate(10deg)
+    } 90% {
+      transform: rotate(-10deg)
+    } 99% {
+      transform: rotate(0)
+    }
   }
 `;

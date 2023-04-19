@@ -64,6 +64,18 @@ html, body {
   }
 }
 
+.fade-out {
+  animation: fade-out 0.5s ease-in;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 100%;
+  } 100% {
+    opacity: 0%;
+  }
+}
+
 .slide-up {
   animation: slide-up 0.5s ease-in;
 }

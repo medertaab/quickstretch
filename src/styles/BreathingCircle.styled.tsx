@@ -53,5 +53,6 @@ export const BreathingCircleStyled = styled.div`
     border-radius: 50%;
     z-index: -0.5;
     border: 3px solid rgba(21, 219, 219, 0.765);
+    box-sizing: border-box;
   }
 `;

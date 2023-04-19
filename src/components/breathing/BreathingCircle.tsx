@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { sprites, duration } from "../../data/breathing";
 import { BreathingCircleStyled } from "../../styles/BreathingCircle.styled";
+import Instructions from "./Instructions";
 
 export default function BreathingCircle(props: any) {
   const { status, breathingRef, setStatus } = props;
@@ -73,13 +74,16 @@ export default function BreathingCircle(props: any) {
   }, [status, breathingRef]);
 
   return (
-    <BreathingCircleStyled>
-      <div className={`topCircle ${status.mode}`}></div>
-      <div className="bottomCircle"></div>
-      {status.on && (
-        <img className="sprite" src={sprites[status.mode][sprite]}></img>
-      )}
-      {!status.on && <img className="sprite" src={sprites.in[0]}></img>}
-    </BreathingCircleStyled>
+    <>
+      <BreathingCircleStyled>
+        <div className={`topCircle ${status.mode}`}></div>
+        <div className="bottomCircle"></div>
+        {status.on && (
+          <img className="sprite" src={sprites[status.mode][sprite]}></img>
+        )}
+        {!status.on && <img className="sprite" src={sprites.in[0]}></img>}
+      </BreathingCircleStyled>
+      <Instructions status={status}/>
+    </>
   );
 }

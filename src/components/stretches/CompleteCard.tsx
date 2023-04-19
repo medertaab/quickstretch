@@ -3,9 +3,9 @@ import CompleteCardStyled from "../../styles/CompleteCard.styled";
 
 export default function CompleteCard(props: any) {
   const { title, setIsComplete, progress, mode } = props;
-  const [shareButtonText, setShareButtonText] = useState("Share")
+  const [shareButtonText, setShareButtonText] = useState("Share");
 
-  handleStreak(progress)
+  handleStreak(progress);
 
   function handleStreak(progress : any) {
     const isFullyCompleted = Object.values(progress).every(value => value === true)
@@ -38,12 +38,14 @@ export default function CompleteCard(props: any) {
   }
 
   function shareText() {
-    const text = `I just completed a ${title} set on http://quickstretch.com (${localStorage.getItem(`${mode}-streak`)} day streak)`
-    navigator.clipboard.writeText(text)
-    setShareButtonText("Copied to clipboard!")
+    const text = `I just completed a ${title} set on http://quickstretch.com (${localStorage.getItem(
+      `${mode}-streak`
+    )} day streak)`;
+    navigator.clipboard.writeText(text);
+    setShareButtonText("Copied to clipboard!");
     setTimeout(() => {
-      setShareButtonText("Share")
-    }, 1500)
+      setShareButtonText("Share");
+    }, 1500);
   }
 
   return (
@@ -58,9 +60,11 @@ export default function CompleteCard(props: any) {
         </button>
 
         <h3>Nice job!</h3>
-        <p>You completed today's <strong>{title}</strong> set</p>
+        <p>
+          You completed today's <strong>{title}</strong> set
+        </p>
         {/* {!isFullyCompleted && <p className="notice">Complete the entire set to increase your streak</p>} */}
-        
+
         <div className="stats-grid">
           <div>
             <span className="stats-number">
@@ -70,7 +74,7 @@ export default function CompleteCard(props: any) {
           </div>
           <div>
             <span className="stats-number">
-              {localStorage.getItem(`${mode}-longest`)}
+              {localStorage.getItem(`${mode}-maxstreak`)}
             </span>
             <span className="stats-streak">Longest streak</span>
           </div>

@@ -14,14 +14,14 @@ import BackButton from "../ui/BackButton";
 import { useParams } from "react-router-dom";
 import PageLayout from "../ui/PageLayout";
 import { useAutoplay } from "../../hooks/AutoplayContext";
-import Background from "../ui/Background";
+import usePreloadImages from "../../hooks/usePreloadImages";
 
-export default function Stretch(props: any) {
+export default function Stretch() {
   const { mode } = useParams();
   const { autoplay } = useAutoplay() as any;
   const data = mode ? ALL_STRETCHES[mode] : ALL_STRETCHES.neck_stretch;
   const [currentExercise, setCurrentExercise] = useState<any>(null);
-  const timer = useRef<number>();
+  const timer = useRef<any>();
   const [seconds, setSeconds] = useState<number | null>(null);
   const [status, setStatus] = useState("off"); // on,off,break,pause
   const [isPaused, setIsPaused] = useState(false);
@@ -32,19 +32,27 @@ export default function Stretch(props: any) {
   const duration = data.exercises.reduce((acc : any, val : any) => {
     return (acc = acc + val.duration + 5);
   }, 0);
+  const preloadImages = usePreloadImages()
+  const scrollRef = useRef<any>(null)
   
   // Start fresh
   useEffect(() => {
     clearProgress();
+    preloadImages(data.exercises)
   }, []);
 
   useEffect(() => {
+    if (data.exercises.indexOf(currentExercise) === data.exercises.length - 1) {
+      setIsLast(true);
+    }
+
     // When exercise ends
     if (seconds === 0 && status === "on") {
+      
       // Tracking progress
       const index = data.exercises.indexOf(currentExercise);
       setProgress({ ...progress, [index]: true });
-
+      
       // After each exercise
       if (isLast) {
         setIsComplete(true);
@@ -52,7 +60,7 @@ export default function Stretch(props: any) {
         setCurrentExercise(null);
         handleTimer.stop();
       } else {
-        if (!autoplay) {
+        if (!currentAutoplay) {
           handleTimer.pause();
           setCurrentExercise((prev: any) => {
             return data.exercises[data.exercises.indexOf(prev) + 1];
@@ -70,24 +78,21 @@ export default function Stretch(props: any) {
       setSeconds(currentExercise.duration);
       handleTimer.start();
     }
-  }, [status, seconds, progress, currentExercise]);
+  }, [status, seconds, progress, currentExercise, data, isLast]);
 
   useEffect(() => {
-    if (data.exercises.indexOf(currentExercise) === data.exercises.length - 1) {
-      setIsLast(true);
-    }
+    scrollRef.current?.scrollIntoView()
   }, [data, currentExercise]);
 
   // Start button
   function handleStart() {
     if (currentExercise) return;
-
     clearProgress();
     setIsLast(false);
     setIsComplete(false);
     setCurrentExercise(data.exercises[0]);
 
-    if (autoplay) {
+    if (currentAutoplay) {
       setStatus("break");
       setSeconds(data.breakDuration);
       handleTimer.start();
@@ -105,6 +110,9 @@ export default function Stretch(props: any) {
 
   // Resume button
   function handleResume() {
+    if (!currentAutoplay) {
+      setStatus("on")
+    }
     setIsPaused(false);
     handleTimer.start();
   }
@@ -120,7 +128,7 @@ export default function Stretch(props: any) {
       return data.exercises[data.exercises.indexOf(prev) + 1];
     });
     setStatus("break");
-    if (autoplay) {
+    if (currentAutoplay) {
       setSeconds(data.breakDuration);
       handleTimer.start();
     } else {
@@ -196,34 +204,34 @@ export default function Stretch(props: any) {
           currentExercise={currentExercise}
           status={status}
           seconds={seconds}
-          autoplay={autoplay}
+          autoplay={currentAutoplay}
           speed={data.speed}
         />
 
         <div className="under-exercise">
           <div className="progress-circles">
             {Object.keys(progress).map((key) => {
-              return <ProgressCircle complete={progress[key]} />;
+              return <ProgressCircle complete={progress[key]} key={key}/>;
             })}
           </div>
-          <ToggleButton on={currentAutoplay} toggle={() => setCurrentAutoplay(!autoplay)}>
+          <ToggleButton on={currentAutoplay} toggle={() => setCurrentAutoplay((prev : any) => !prev)}>
             Autoplay
           </ToggleButton>
         </div>
 
         {status === "off" && <StartButton onClick={handleStart} />}
         {status !== "off" && (
-          <Timer isPaused={isPaused} status={status} autoplay={autoplay}>
+          <Timer isPaused={isPaused} status={status} autoplay={currentAutoplay}>
             {seconds}
           </Timer>
         )}
 
-        <div className="control-buttons-container">
+        <ul ref={scrollRef} className="control-buttons-container">
           <ControlButton title="Stop" onClick={handleStop} status={status} />
-          {isPaused && autoplay && (
+          {isPaused && currentAutoplay && (
             <ControlButton title="Resume" onClick={handleResume} />
           )}
-          {isPaused && !autoplay && (
+          {isPaused && !currentAutoplay && (
             <ControlButton title="Start" onClick={handleResume} />
           )}
           {!isPaused && (
@@ -239,7 +247,7 @@ export default function Stretch(props: any) {
             isLast={isLast}
             status={status}
           />
-        </div>
+        </ul>
 
         {isComplete && (
           <CompleteCard

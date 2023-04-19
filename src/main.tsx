@@ -7,22 +7,23 @@ import { AutoplayProvider } from "./hooks/AutoplayContext";
 import Stretch from "./components/stretches/Stretch";
 import Homepage from "./components/homepage/Homepage";
 import Breathing from "./components/breathing/Breathing";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, HashRouter, createHashRouter } from "react-router-dom";
 
-
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Homepage />,
-  },
-  {
-    path: "/breathing",
-    element: <Breathing />,
-  },
-  {
-    path: "/:mode",
-    element: <Stretch />,
-  },
+  }, {
+    path: "breathing",
+    element: <Breathing />
+  }, {
+    path: ":mode",
+    element: <Stretch/>,
+    errorElement: <Homepage />
+  }, {
+    path: "*",
+    element: <Homepage />
+  }  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

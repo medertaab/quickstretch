@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ALL_STRETCHES } from "../../data/ALL_STRETCHES";
 import { Link } from "react-router-dom";
 
-export default function StretchCard(props: any) {
+export default function ModeButton(props: any) {
   const { title, mode } = props;
 
   const duration = ALL_STRETCHES[mode]?.exercises.reduce((acc, val) => {
@@ -12,8 +12,8 @@ export default function StretchCard(props: any) {
   const durationRounded = Math.round((duration / 60) * 2) / 2;
 
   return (
-    <StretchCardStyled>
-      <Link to={`${mode}`}>
+    <ModeButtonStyled>
+      <Link to={mode === "breathing" ? "/breathing" : `/${mode}`}>
         <div className="images">
           <img src={`/card_images/${mode}.png`} alt={`${mode}`}/>
           <img src={`/card_images/${mode}_under.png`} className="under-image" alt={`${mode}-highlighted`}/>
@@ -21,11 +21,11 @@ export default function StretchCard(props: any) {
         <h2>{title}</h2>
         {mode !== "breathing" && <p>{durationRounded} min</p>}
       </Link>
-    </StretchCardStyled>
+    </ModeButtonStyled>
   );
 }
 
-const StretchCardStyled = styled.li`
+const ModeButtonStyled = styled.li`
   list-style: none;
   width: 14rem;
   min-height: 185px;
@@ -34,7 +34,7 @@ const StretchCardStyled = styled.li`
   box-sizing: border-box;
   border-radius: 0.5rem;
   backdrop-filter: blur(10px);
-  background-color: #ebe9e542;
+  background-color: #ebe9e5a0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,10 +52,12 @@ const StretchCardStyled = styled.li`
   h2 {
     font-size: 1.2rem;
     font-weight: 500;
+    color: #353535
   }
 
   p {
     font-size: 0.7rem;
+    color: #353535;
   }
 
   .images {
@@ -74,7 +76,7 @@ const StretchCardStyled = styled.li`
     position: absolute;
     left: 0;
     opacity: 0%;
-    transition: 0.2s ease-in-out;
+    transition: 0.15s ease-in-out;
     z-index: -1;
   }
 
@@ -84,8 +86,6 @@ const StretchCardStyled = styled.li`
       opacity: 100%;
       margin: 0 auto;
     }
-
-    
   }
 
   @media (max-width: 600px) {

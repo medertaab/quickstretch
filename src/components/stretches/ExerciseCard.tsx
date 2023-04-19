@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sprite from "./Sprite";
 import ExerciseContainer from "../../styles/ExerciseContainer.styled";
 
@@ -34,8 +34,8 @@ export default function ExerciseCard(props: any) {
         </h3>
 
         <ul>
-          {currentExercise.instructions.map((instruction: string) => {
-            return <li>{instruction}</li>
+          {currentExercise.instructions.map((instruction: string, id : number) => {
+            return <li key={id}>{instruction}</li>
           })}
         </ul>
       </div>

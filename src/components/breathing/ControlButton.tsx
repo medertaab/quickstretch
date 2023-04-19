@@ -3,9 +3,10 @@ import React from "react";
 export default function ControlButton(props: any) {
   const { status, startBreathing, stopBreathing } = props;
 
-  if (!status.on) return (
-    <>
-      <p>Press start to begin</p>
+  if (!status.on)
+    return (
+      <>
+        <p>Press start to begin</p>
         <button
           className="control-button"
           type="button"
@@ -13,20 +14,15 @@ export default function ControlButton(props: any) {
         >
           Start
         </button>
-    </>
-  )
-  if (status.on) return (
-    <>
-      <p className="fade-in">{status.text}</p>
-      <button
-        className="control-button"
-        type="button"
-        onClick={stopBreathing}
-      >
+      </>
+    );
+    
+  if (status.on)
+    return (
+      <button className="control-button" type="button" onClick={stopBreathing}>
         Stop
       </button>
-    </>
-  );
+    );
 
-  return (<></>)
+  return <></>;
 }

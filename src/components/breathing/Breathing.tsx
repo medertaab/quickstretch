@@ -1,6 +1,5 @@
 import React from "react";
 import { BreathingExercise } from "../../styles/Breathing.styled";
-import Background from "../ui/Background";
 import BreathingCard from "./BreathingCard";
 import BackButton from "../ui/BackButton";
 import PageLayout from "../ui/PageLayout";

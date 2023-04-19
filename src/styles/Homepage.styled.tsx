@@ -10,7 +10,13 @@ const HomePageStyled = styled.div`
   align-items: center;
 
   .logo {
-    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    height: 2rem;
+    margin-right: 0.2rem;
   }
 
   .description {

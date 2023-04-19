@@ -6,7 +6,7 @@ export default function ToggleButton(props : any) {
   return (
     <Toggle on={on}>
       <span className="label-text">{children}</span>
-      <input type="checkbox" checked={on} onClick={toggle} />
+      <input type="checkbox" checked={on} onChange={toggle} />
       <span className="toggle-on">
         <span className="toggle-button"></span>
       </span>
@@ -14,7 +14,7 @@ export default function ToggleButton(props : any) {
   )
 }
 
-const Toggle = styled.label<{on : Boolean}>`
+const Toggle = styled.label<{on : any}>`
 
   .label-text {
     margin-right: 0.5rem;
