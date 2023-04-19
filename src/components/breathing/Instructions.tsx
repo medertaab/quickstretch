@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { duration } from '../../data/breathing'
 
+type Mode = {
+  in: number;
+  hold: number;
+  out: number;
+  rest: number;
+}
+
 export default function Instructions(props : any) {
   const {status} = props
   const [fadeout, setFadeout] = useState(false)
@@ -8,9 +15,10 @@ export default function Instructions(props : any) {
   useEffect(() => {
     if (status.mode === "out") return
     setFadeout(false)
+    const modeDuration = duration[status.mode as keyof Mode]
     const timeout = setTimeout(() => {
       setFadeout(true)
-    }, (duration[status.mode] - 500))
+    }, (modeDuration - 500))
     return () => clearTimeout(timeout)
   }, [status])
 
