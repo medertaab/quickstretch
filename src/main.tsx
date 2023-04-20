@@ -7,7 +7,7 @@ import { AutoplayProvider } from "./hooks/AutoplayContext";
 import Stretch from "./components/stretches/Stretch";
 import Homepage from "./components/homepage/Homepage";
 import Breathing from "./components/breathing/Breathing";
-import { createBrowserRouter, RouterProvider, HashRouter, createHashRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 
 const router = createHashRouter([
   {

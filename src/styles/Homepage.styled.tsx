@@ -17,6 +17,7 @@ const HomePageStyled = styled.div`
   .logo img {
     height: 2rem;
     margin-right: 0.2rem;
+    animation: shake-infinite 3s linear 1s infinite;
   }
 
   .description {

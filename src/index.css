@@ -103,3 +103,31 @@ html, body {
     opacity: 100%;
   }
 }
+
+@keyframes shake {
+  0% {
+    transform: rotate(0)
+  } 40% {
+    transform: rotate(-10deg)
+  } 70% {
+    transform: rotate(10deg)
+  } 90% {
+    transform: rotate(-10deg)
+  } 99% {
+    transform: rotate(0)
+  }
+}
+
+@keyframes shake-infinite {
+  0% {
+    transform: rotate(0)
+  } 4% {
+    transform: rotate(-10deg)
+  } 8% {
+    transform: rotate(10deg)
+  } 10% {
+    transform: rotate(-10deg)
+  } 12% {
+    transform: rotate(0)
+  }
+}

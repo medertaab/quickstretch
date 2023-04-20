@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import MenuModal from "./MenuModal";
+import { useLocation } from "react-router-dom";
 
 export default function Navbar(props: any) {
   const [openMenu, setOpenMenu] = useState(false);
+  const location = useLocation().pathname
 
   return (
     <>
       <NavStyled>
-        <Link to="/" className="logo">
-          <img src="logo.png"/>
-        </Link>
+        {/* Show logo on sub- */}
+        {location !== "/" && (
+          <Link to="/" className="logo">
+            <img src="logo.png"/>
+          </Link>
+        )}
         <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)} title="Open menu">
           <span></span>
           <span></span>
@@ -57,6 +62,7 @@ const NavStyled = styled.nav`
     border: none;
     background-color: transparent;
     cursor: pointer;
+    margin-left: auto;
   }
 
   .menu-toggle span {
@@ -71,19 +77,5 @@ const NavStyled = styled.nav`
 
   .menu-toggle span:last-child {
     margin-bottom: 0;
-  }
-
-  @keyframes shake {
-    0% {
-      transform: rotate(0)
-    } 40% {
-      transform: rotate(-10deg)
-    } 70% {
-      transform: rotate(10deg)
-    } 90% {
-      transform: rotate(-10deg)
-    } 99% {
-      transform: rotate(0)
-    }
   }
 `;

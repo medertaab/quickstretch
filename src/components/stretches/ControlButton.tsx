@@ -23,6 +23,7 @@ export default function ControlButton(props: any) {
 }
 
 const StyledControlButton = styled.button<{ title: String }>`
+margin: 0;
   height: 2rem;
   width: 6rem;
   min-width: fit-content;
