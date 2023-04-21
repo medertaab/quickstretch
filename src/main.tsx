@@ -8,7 +8,6 @@ import Stretch from "./components/stretches/Stretch";
 import Homepage from "./components/homepage/Homepage";
 import Breathing from "./components/breathing/Breathing";
 import { RouterProvider, createHashRouter } from "react-router-dom";
-
 const router = createHashRouter([
   {
     path: "/",
@@ -23,7 +22,7 @@ const router = createHashRouter([
   }, {
     path: "*",
     element: <Homepage />
-  }  
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

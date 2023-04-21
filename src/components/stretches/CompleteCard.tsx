@@ -5,37 +5,51 @@ export default function CompleteCard(props: any) {
   const { title, setIsComplete, progress, mode } = props;
   const [shareButtonText, setShareButtonText] = useState("Share");
 
-  handleStreak(progress);
-
   function handleStreak(progress : any) {
     const isFullyCompleted = Object.values(progress).every(value => value === true)
+
     const today = new Date().toLocaleDateString()
-    if (isFullyCompleted) {
-      if (localStorage.getItem(`${mode}-latest`)) {
-        if (localStorage.getItem(`${mode}-latest`) === today) {
-          return
-        }
-        localStorage.setItem(`${mode}-previous`, localStorage.getItem(`${mode}-latest`) as string)
-        localStorage.setItem(`${mode}-latest`, today)
-        const yesterday = new Date()
-        yesterday.setDate(yesterday.getDate() - 1)
-        if (localStorage.getItem(`${mode}-previous`) === yesterday.toLocaleDateString()) {
-          const oldStreak = localStorage.getItem(`${mode}-streak`)
-          const newStreak = Number(oldStreak) + 1
-          localStorage.setItem(`${mode}-streak`, newStreak.toString())
-          const maxStreak = localStorage.getItem(`${mode}-maxstreak`)
-          if (newStreak > Number(maxStreak)) {
-            localStorage.setItem(`${mode}-maxstreak`, newStreak.toString())
-          }
-        }
-      } else {
-        // If first time
-        localStorage.setItem(`${mode}-latest`, today)
-        localStorage.setItem(`${mode}-streak`, "1")
-        localStorage.setItem(`${mode}-maxstreak`, "1")
+    const yesterdayDate = new Date()
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1)
+    const yesterday = yesterdayDate.toLocaleDateString()
+
+    const latestDate = localStorage.getItem(`${mode}-latest`);
+    const previousDate = localStorage.getItem(`${mode}-previous`);
+
+    if (!isFullyCompleted) {
+      // If user previously completed the set today or yesterday
+      if (latestDate && latestDate !== today && latestDate !== yesterday) {
+        localStorage.setItem(`${mode}-streak`, "0")
       }
+      return
     }
+    
+    // If user completed a set, but already completed before today
+    if (latestDate === today) {
+      return;
+    }
+    
+    // If last completed set was yesterday
+    if (latestDate === yesterday || !previousDate) {
+      const oldStreak = localStorage.getItem(`${mode}-streak`);
+      const newStreak = Number(oldStreak) + 1;
+      localStorage.setItem(`${mode}-streak`, String(newStreak));
+      
+      const maxStreak = Number(localStorage.getItem(`${mode}-maxstreak`));
+      if (newStreak > maxStreak) {
+        localStorage.setItem(`${mode}-maxstreak`, String(newStreak));
+      }
+    // If last completed set was not yesterday - break streak
+    } else {
+      localStorage.setItem(`${mode}-streak`, "1");
+    }
+    
+    // Update data for future reference
+    localStorage.setItem(`${mode}-previous`, latestDate || "");
+    localStorage.setItem(`${mode}-latest`, today);
   }
+
+  handleStreak(progress)
 
   function shareText() {
     const text = `I just completed a ${title} set on http://quickstretch.com (${localStorage.getItem(

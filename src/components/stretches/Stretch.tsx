@@ -81,7 +81,7 @@ export default function Stretch() {
   }, [status, seconds, progress, currentExercise, data, isLast]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView()
+    scrollRef.current?.scrollIntoView({ behavior: "instant", block: "end"})
   }, [data, currentExercise]);
 
   // Start button
