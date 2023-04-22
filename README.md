@@ -1,3 +1,7 @@
+<div align="center">
+  <img height="150" src="https://quickstretch.netlify.app/neck_stretch/leftandright/1.png" alt="QuickStetch bunny" />
+</div>
+
 # Quickstretch
 
 Quickstretch is a web app that provides users with different stretch modes, each containing exercises for different stretches such as neck, shoulders, and hands. The app also includes a breathing exercise mode. All illustrations accompanying each exercise were drawn by the developer and thus have copyright. 
