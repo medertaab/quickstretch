@@ -45,7 +45,7 @@ export default function Stretch() {
 
   // Scroll controls into view
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "instant", block: "nearest"})
+    scrollRef.current?.scrollIntoView({ behavior: "instant", block: "start"})
   }, [data, currentExercise]);
 
   useEffect(() => {
