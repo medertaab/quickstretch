@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { sprites, duration } from "../../data/breathing";
+import { sprites, duration } from "../../data/BREATHING";
 import { BreathingCircleStyled } from "../../styles/BreathingCircle.styled";
 import Instructions from "./Instructions";
 

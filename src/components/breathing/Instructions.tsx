@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { duration } from '../../data/breathing'
+import { duration } from '../../data/BREATHING'
 
 type Mode = {
   in: number;

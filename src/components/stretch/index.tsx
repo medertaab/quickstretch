@@ -19,9 +19,13 @@ import usePreloadImages from "../../hooks/usePreloadImages";
 export default function Stretch() {
   const { mode } = useParams();
   const { autoplay } = useAutoplay() as any;
+  const preloadImages = usePreloadImages()
   const data = mode ? ALL_STRETCHES[mode] : ALL_STRETCHES.neck_stretch;
+  const duration = data.exercises.reduce((acc : any, val : any) => {
+    return (acc = acc + val.duration + 5);
+  }, 0);
+
   const [currentExercise, setCurrentExercise] = useState<any>(null);
-  const timer = useRef<any>();
   const [seconds, setSeconds] = useState<number | null>(null);
   const [status, setStatus] = useState("off"); // on,off,break,pause
   const [isPaused, setIsPaused] = useState(false);
@@ -29,10 +33,8 @@ export default function Stretch() {
   const [isLast, setIsLast] = useState(false);
   const [progress, setProgress] = useState<any>({});
   const [currentAutoplay, setCurrentAutoplay] = useState(autoplay);
-  const duration = data.exercises.reduce((acc : any, val : any) => {
-    return (acc = acc + val.duration + 5);
-  }, 0);
-  const preloadImages = usePreloadImages()
+
+  const timer = useRef<any>();
   const scrollRef = useRef<any>(null)
   
   // Start fresh
@@ -40,6 +42,11 @@ export default function Stretch() {
     clearProgress();
     preloadImages(data.exercises)
   }, []);
+
+  // Scroll controls into view
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView()
+  }, [data, currentExercise]);
 
   useEffect(() => {
     if (data.exercises.indexOf(currentExercise) === data.exercises.length - 1) {
@@ -79,10 +86,6 @@ export default function Stretch() {
       handleTimer.start();
     }
   }, [status, seconds, progress, currentExercise, data, isLast]);
-
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "instant", block: "end"})
-  }, [data, currentExercise]);
 
   // Start button
   function handleStart() {

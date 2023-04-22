@@ -25,7 +25,7 @@ export const ALL_STRETCHES: Stretch = {
     exercises: [
       {
         title: "Left and right",
-        duration: 6,
+        duration: 30,
         instructions: [
           "Sit with your back straight",
           "Slowly turn your head to the left, as if you're trying to look over your shoulder",
@@ -41,7 +41,7 @@ export const ALL_STRETCHES: Stretch = {
       },
       {
         title: "Up and down",
-        duration: 6,
+        duration: 30,
         instructions: [
           "Place your hands on your chest",
           "Gently tilt your head upwards, looking towards the ceiling",
@@ -57,7 +57,7 @@ export const ALL_STRETCHES: Stretch = {
       },
       {
         title: "Side to side",
-        duration: 6,
+        duration: 30,
         instructions: [
           "Tilt your head towards your left shoulder, feeling a stretch in the right side of your neck",
           "Hold for two seconds",
@@ -72,7 +72,7 @@ export const ALL_STRETCHES: Stretch = {
       },
       {
         title: "In and out",
-        duration: 6,
+        duration: 30,
         instructions: [
           "Tuck your chin in towards your chest, feeling a stretch in the back of your neck",
           "Hold for two seconds",
@@ -87,7 +87,7 @@ export const ALL_STRETCHES: Stretch = {
       },
       {
         title: "Sliding head",
-        duration: 6,
+        duration: 30,
         instructions: [
           "Keep your eyes level",
           "Slide your head to the left, feeling a stretch in the right side of your neck",
@@ -103,7 +103,7 @@ export const ALL_STRETCHES: Stretch = {
       },
       {
         title: "Half circle",
-        duration: 6,
+        duration: 30,
         instructions: [
           "Lift your ear on one side",
           "Slowly lower your head to tuck your chin in towards your chest, feeling a stretch in the back of your neck",

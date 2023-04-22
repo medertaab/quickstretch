@@ -4,9 +4,9 @@ import "./index.css";
 import GlobalStyles from "./styles/GlobalStyles";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { AutoplayProvider } from "./hooks/AutoplayContext";
-import Stretch from "./components/stretches/Stretch";
-import Homepage from "./components/homepage/Homepage";
-import Breathing from "./components/breathing/Breathing";
+import Stretch from "./components/stretch";
+import Homepage from "./components/homepage";
+import Breathing from "./components/breathing";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 const router = createHashRouter([
   {
