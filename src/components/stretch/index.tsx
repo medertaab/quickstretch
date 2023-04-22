@@ -229,7 +229,7 @@ export default function Stretch() {
           </Timer>
         )}
 
-        <ul ref={scrollRef} className="control-buttons-container">
+        <ul className="control-buttons-container">
           <ControlButton title="Stop" onClick={handleStop} status={status} />
           {isPaused && currentAutoplay && (
             <ControlButton title="Resume" onClick={handleResume} />
@@ -251,6 +251,7 @@ export default function Stretch() {
             status={status}
           />
         </ul>
+        <div ref={scrollRef}></div>
 
         {isComplete && (
           <CompleteCard
