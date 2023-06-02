@@ -20,7 +20,7 @@ const CompleteCardStyled = styled.div`
     border-radius: 0.5rem;
     padding: 2rem;
     box-sizing: border-box;
-    box-shadow: 0 4px 1.2rem var(--accent);
+    box-shadow: 0 5px 20px #2c003a1f;
   }
 
   h3 {

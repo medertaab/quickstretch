@@ -1,5 +1,4 @@
 import React from "react";
-import ArrowLeft from "../../assets/arrow-left-solid.svg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 

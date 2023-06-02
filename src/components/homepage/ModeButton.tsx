@@ -15,8 +15,12 @@ export default function ModeButton(props: any) {
     <ModeButtonStyled>
       <Link to={mode === "breathing" ? "/breathing" : `/${mode}`}>
         <div className="images">
-          <img src={`/card_images/${mode}.png`} alt={`${mode}`}/>
-          <img src={`/card_images/${mode}_under.png`} className="under-image" alt={`${mode}-highlighted`}/>
+          <img src={`/card_images/${mode}.png`} alt={`${mode}`} />
+          <img
+            src={`/card_images/${mode}_under.png`}
+            className="under-image"
+            alt={`${mode}-highlighted`}
+          />
         </div>
         <h2>{title}</h2>
         {mode !== "breathing" && <p>{durationRounded} min</p>}
@@ -29,12 +33,12 @@ const ModeButtonStyled = styled.li`
   list-style: none;
   width: 14rem;
   min-height: 185px;
-  border: 2px solid var(--default-black);
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 0.5rem;
   backdrop-filter: blur(10px);
   background-color: #ebe9e5a0;
+  box-shadow: 0 5px 20px #2c003a1f;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +47,7 @@ const ModeButtonStyled = styled.li`
   transition: 0.1s ease-in;
   position: relative;
   overflow: hidden;
-  
+
   a {
     width: 100%;
     height: 100%;
@@ -52,7 +56,7 @@ const ModeButtonStyled = styled.li`
   h2 {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #353535
+    color: #353535;
   }
 
   p {
@@ -69,7 +73,6 @@ const ModeButtonStyled = styled.li`
   img {
     height: 6rem;
     transition: 0.2s ease-in-out;
-    
   }
 
   .under-image {
@@ -80,7 +83,6 @@ const ModeButtonStyled = styled.li`
     z-index: -1;
   }
 
- 
   &:hover {
     .under-image {
       opacity: 100%;

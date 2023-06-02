@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTheme } from "../../hooks/ThemeContext";
+import { useLocation } from "react-router-dom";
 
 export default function Background() {
   const { theme } = useTheme() as any;
+  const inExercise = useLocation().pathname !== "/"
+
   return (
-    <FlowingBackground theme={theme}>
+    <FlowingBackground theme={theme} inExercise={inExercise}>
       <div className="star-container">
         <svg
           className="star"
@@ -37,8 +40,8 @@ export default function Background() {
   );
 }
 
-const FlowingBackground = styled.div<{ theme: String }>`
-  max-height: 150%;
+const FlowingBackground = styled.div<{ theme: String, inExercise: Boolean }>`
+  max-height: 100%;
   inset: 0;
   position: fixed;
   z-index: -10;
@@ -51,10 +54,11 @@ const FlowingBackground = styled.div<{ theme: String }>`
 
   .star-container {
     margin-top: 3rem;
-    width: 80%;
-    min-width: 500px;
-    max-width: 30rem;
+    width: 30rem;
     position: relative;
+    scale: ${(props) => props.inExercise && '180%'};
+    transition: 1s ease-in-out;
+
   }
 
   .star {

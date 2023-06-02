@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CompleteCardStyled from "../../styles/CompleteCard.styled";
 
 export default function CompleteCard(props: any) {
   const { title, setIsComplete, progress, mode } = props;
   const [shareButtonText, setShareButtonText] = useState("Share");
 
-  function handleStreak(progress : any) {
-    const isFullyCompleted = Object.values(progress).every(value => value === true)
+  const isFullyCompleted = Object.values(progress).every(value => value === true)
 
+  function handleStreak() {
     const today = new Date().toLocaleDateString()
     const yesterdayDate = new Date()
     yesterdayDate.setDate(yesterdayDate.getDate() - 1)
@@ -49,12 +49,10 @@ export default function CompleteCard(props: any) {
     localStorage.setItem(`${mode}-latest`, today);
   }
 
-  handleStreak(progress)
+  handleStreak()
 
   function shareText() {
-    const text = `I just completed a ${title} set on http://quickstretch.com (${localStorage.getItem(
-      `${mode}-streak`
-    )} day streak)`;
+    const text = `I just completed a ${title} set on http://quickstretch.com`;
     navigator.clipboard.writeText(text);
     setShareButtonText("Copied to clipboard!");
     setTimeout(() => {
@@ -77,22 +75,23 @@ export default function CompleteCard(props: any) {
         <p>
           You completed today's <strong>{title}</strong> set
         </p>
-        {/* {!isFullyCompleted && <p className="notice">Complete the entire set to increase your streak</p>} */}
 
         <div className="stats-grid">
           <div>
             <span className="stats-number">
-              {localStorage.getItem(`${mode}-streak`)}
+              {localStorage.getItem(`${mode}-streak`) || "0"}
             </span>
             <span className="stats-streak">Current streak</span>
           </div>
           <div>
             <span className="stats-number">
-              {localStorage.getItem(`${mode}-maxstreak`)}
+              {localStorage.getItem(`${mode}-maxstreak`) || "0"}
             </span>
             <span className="stats-streak">Longest streak</span>
           </div>
         </div>
+        {!isFullyCompleted && <p className="notice">(Complete the entire set to increase your streak)</p>}
+
 
         <button className="share-button" type="button" onClick={shareText}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">

@@ -8,6 +8,7 @@ import Stretch from "./components/stretch";
 import Homepage from "./components/homepage";
 import Breathing from "./components/breathing";
 import { RouterProvider, createHashRouter } from "react-router-dom";
+
 const router = createHashRouter([
   {
     path: "/",
