@@ -6,11 +6,10 @@ const CompleteCardStyled = styled.div`
   inset: 0;
   height: 100%;
   width: 100%;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(0.5rem);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #00000013;
 
   .container {
     width: 70%;

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const StretchPage = styled.div`
   box-sizing: border-box;
   padding: 2rem;
-  max-width: 800px;
   margin: 0 1rem;
   display: flex;
   flex-direction: column;
@@ -13,6 +12,10 @@ export const StretchPage = styled.div`
   background-color: var(--default-light-transparent);
   border-radius: 1rem;
   cursor: default;
+  max-height: 38rem;
+  height: 100%;
+  max-width: 50rem;
+  width: 100%;
 
   .button-back {
     left: 0;
@@ -49,6 +52,9 @@ export const StretchPage = styled.div`
   }
 
   @media (max-width: 550px) {
+    max-height: 100%;
+    max-width: 100%;
+
     .under-exercise > *:last-child {
       right: -1rem;
     }
@@ -60,9 +66,8 @@ export const TextData = styled.div<{ status: String }>`
   margin-top: 0.1rem;
 
   p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     opacity: 80%;
-    font-style: italic;
   }
 
   h2 {

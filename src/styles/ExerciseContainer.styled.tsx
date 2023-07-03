@@ -36,8 +36,8 @@ const ExerciseContainer = styled.div<{status : String}>`
 
   li {
     text-align: left;
-    font-size: 0.7rem;
-    margin-top: 0.7rem;
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
     list-style: none;
     animation: ${props => props.status === "break" ? "text-shimmer 1s ease-in-out infinite" : "none"}
   }

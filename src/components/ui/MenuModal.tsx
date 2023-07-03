@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { MenuStyled } from "../styles/MenuModal.styled";
-import ToggleButton from "./ui/ToggleButton";
-import { useTheme } from "../hooks/ThemeContext";
-import { useAutoplay } from "../hooks/AutoplayContext";
+import { MenuStyled } from "../../styles/MenuModal.styled";
+import { useTheme } from "../../hooks/ThemeContext";
+import { useAutoplay } from "../../hooks/AutoplayContext";
+import ToggleButton from "./ToggleButton";
 
 export default function Menu(props: any) {
   const { theme, toggleTheme } = useTheme() as any;
@@ -66,7 +65,7 @@ export default function Menu(props: any) {
             );
           })}
         </ul>
-        <span className="copyright">© MT</span>
+        <a href="http://medertaab.netlify.com/" className="copyright">© MT</a>
       </div>
     </MenuStyled>
   );

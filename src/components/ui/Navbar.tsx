@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import MenuModal from "./MenuModal";
 import { useLocation } from "react-router-dom";
+import MenuModal from "./MenuModal";
+import styled from "styled-components";
 
 export default function Navbar(props: any) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -14,7 +14,7 @@ export default function Navbar(props: any) {
         {/* Show logo on sub- */}
         {location !== "/" && (
           <Link to="/" className="logo">
-            <img src="logo.png"/>
+            <img src="logo.png" alt="Logo image of cute bunny drawing"/>
           </Link>
         )}
         <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)} title="Open menu">

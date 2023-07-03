@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import GlobalStyles from "./styles/GlobalStyles";
-import { ThemeProvider } from "./hooks/ThemeContext";
-import { AutoplayProvider } from "./hooks/AutoplayContext";
 import Stretch from "./components/stretch";
 import Homepage from "./components/homepage";
 import Breathing from "./components/breathing";
+import { ThemeProvider } from "./hooks/ThemeContext";
+import { AutoplayProvider } from "./hooks/AutoplayContext";
 import { RouterProvider, createHashRouter } from "react-router-dom";
+import "./index.css";
 
 const router = createHashRouter([
   {

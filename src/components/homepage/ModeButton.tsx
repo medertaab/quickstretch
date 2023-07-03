@@ -15,11 +15,11 @@ export default function ModeButton(props: any) {
     <ModeButtonStyled>
       <Link to={mode === "breathing" ? "/breathing" : `/${mode}`}>
         <div className="images">
-          <img src={`/card_images/${mode}.png`} alt={`${mode}`} />
+          <img src={`/card_images/${mode}.png`} alt={`${mode} mode illustration`} />
           <img
             src={`/card_images/${mode}_under.png`}
             className="under-image"
-            alt={`${mode}-highlighted`}
+            alt={`${mode} mode highlighted`}
           />
         </div>
         <h2>{title}</h2>

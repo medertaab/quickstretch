@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../Navbar'
+import Navbar from './Navbar'
 import Background from './Background'
 import PageLayoutStyled from '../../styles/PageLayout.styled'
 

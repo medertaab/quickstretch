@@ -79,7 +79,7 @@ export default function BreathingCircle(props: any) {
         <div className={`topCircle ${status.mode}`}></div>
         <div className="bottomCircle"></div>
         {status.on && (
-          <img className="sprite" src={sprites[status.mode][sprite]}></img>
+          <img className="sprite" src={sprites[status.mode][sprite]} alt="Image of bunny showing current breathing status"></img>
         )}
         {!status.on && <img className="sprite" src={sprites.in[0]}></img>}
       </BreathingCircleStyled>

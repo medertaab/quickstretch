@@ -5,7 +5,7 @@ export const MenuStyled = styled.div`
   width: 100%;
   top: 0;
   position: fixed;
-  background-color: #ffffff40;
+  background-color: var(--backdrop);
   backdrop-filter: blur(5px);
   z-index: 5;
   display: flex;
@@ -63,8 +63,10 @@ export const MenuStyled = styled.div`
   }
 
   .copyright {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     float: right;
     opacity: 50%;
+    color: black;
+    text-decoration: underline;
   }
 `;
