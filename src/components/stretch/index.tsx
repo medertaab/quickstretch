@@ -8,7 +8,8 @@ import ToggleButton from "../ui/ToggleButton";
 import {
   StretchPage,
   ProgressCircle,
-  Timer, TextData
+  Timer,
+  TextData,
 } from "../../styles/Stretch.styled";
 import BackButton from "../ui/BackButton";
 import { useParams } from "react-router-dom";
@@ -19,9 +20,9 @@ import usePreloadImages from "../../hooks/usePreloadImages";
 export default function Stretch() {
   const { mode } = useParams();
   const { autoplay } = useAutoplay() as any;
-  const preloadImages = usePreloadImages()
+  const preloadImages = usePreloadImages();
   const data = mode ? ALL_STRETCHES[mode] : ALL_STRETCHES.neck_stretch;
-  const duration = data.exercises.reduce((acc : any, val : any) => {
+  const duration = data.exercises.reduce((acc: any, val: any) => {
     return (acc = acc + val.duration + 5);
   }, 0);
 
@@ -35,17 +36,17 @@ export default function Stretch() {
   const [currentAutoplay, setCurrentAutoplay] = useState(autoplay);
 
   const timer = useRef<any>();
-  const scrollRef = useRef<any>(null)
-  
+  const scrollRef = useRef<any>(null);
+
   // Start fresh
   useEffect(() => {
     clearProgress();
-    preloadImages(data.exercises)
+    preloadImages(data.exercises);
   }, []);
 
   // Scroll controls into view
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "instant", block: "end"})
+    scrollRef.current?.scrollIntoView({ behavior: "instant", block: "end" });
   }, [data, currentExercise]);
 
   useEffect(() => {
@@ -55,11 +56,10 @@ export default function Stretch() {
 
     // When exercise ends
     if (seconds === 0 && status === "on") {
-      
       // Tracking progress
       const index = data.exercises.indexOf(currentExercise);
       setProgress({ ...progress, [index]: true });
-      
+
       // After each exercise
       if (isLast) {
         setIsComplete(true);
@@ -114,7 +114,7 @@ export default function Stretch() {
   // Resume button
   function handleResume() {
     if (!currentAutoplay) {
-      setStatus("on")
+      setStatus("on");
     }
     setIsPaused(false);
     handleTimer.start();
@@ -160,7 +160,7 @@ export default function Stretch() {
 
   function clearProgress() {
     setProgress(
-      data.exercises.reduce((acc : any, val : any, index : any) => {
+      data.exercises.reduce((acc: any, val: any, index: any) => {
         return { ...acc, [index]: false };
       }, {})
     );
@@ -214,10 +214,13 @@ export default function Stretch() {
         <div className="under-exercise">
           <div className="progress-circles">
             {Object.keys(progress).map((key) => {
-              return <ProgressCircle complete={progress[key]} key={key}/>;
+              return <ProgressCircle complete={progress[key]} key={key} />;
             })}
           </div>
-          <ToggleButton on={currentAutoplay} toggle={() => setCurrentAutoplay((prev : any) => !prev)}>
+          <ToggleButton
+            on={currentAutoplay}
+            toggle={() => setCurrentAutoplay((prev: any) => !prev)}
+          >
             Autoplay
           </ToggleButton>
         </div>
@@ -229,7 +232,7 @@ export default function Stretch() {
           </Timer>
         )}
 
-        <ul className="control-buttons-container">
+        <ul className="control-buttons-container" ref={scrollRef}>
           <ControlButton title="Stop" onClick={handleStop} status={status} />
           {isPaused && currentAutoplay && (
             <ControlButton title="Resume" onClick={handleResume} />
@@ -251,7 +254,6 @@ export default function Stretch() {
             status={status}
           />
         </ul>
-        <div ref={scrollRef}></div>
 
         {isComplete && (
           <CompleteCard
