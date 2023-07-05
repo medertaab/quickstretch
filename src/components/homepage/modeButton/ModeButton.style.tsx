@@ -69,7 +69,7 @@ const ModeButtonStyled = styled.li`
     width: 1.3rem;
     padding: 0.5rem;
     border-radius: 100%;
-    background-color: var(--accent-light);
+    background-color: var(--accent);
     float: right;
     margin-top: 0.2rem;
     transition: 0.3s ease-in-out;
@@ -92,7 +92,7 @@ const ModeButtonStyled = styled.li`
     }
 
     .playButton {
-      background-color: var(--accent);
+      background-color: var(--accent-hover);
     }
   }
 
@@ -102,6 +102,7 @@ const ModeButtonStyled = styled.li`
     a {
       display: grid;
       grid-template: 1fr 1fr / 1.1fr 1fr;
+      column-gap: 1rem;
     }
 
     .images {
@@ -123,11 +124,11 @@ const ModeButtonStyled = styled.li`
 
     .information {
       grid-area: 1 / 2 / 2 / 3;
-      margin-top: 1rem;
+      margin-top: 0;
     }
 
     .playButton {
-      margin-top: 0.5rem;
+      margin: 0.5rem 0 0 0;
     }
   }
 
@@ -136,7 +137,7 @@ const ModeButtonStyled = styled.li`
 
     a {
       display: grid;
-      grid-template: 1fr 1fr / 1fr 1fr;
+      grid-template: 1.2fr 1fr / 1fr 1fr;
     }
 
     h2 {
