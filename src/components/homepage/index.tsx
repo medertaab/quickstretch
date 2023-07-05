@@ -1,5 +1,5 @@
-import Disclaimer from "./Disclaimer";
-import ModeButton from "./ModeButton";
+import Disclaimer from "./disclaimer";
+import ModeButton from "./modeButton";
 import PageLayout from "../ui/PageLayout";
 import HomePageStyled from "../../styles/Homepage.styled";
 

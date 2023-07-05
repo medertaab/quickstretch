@@ -19,8 +19,12 @@ const LightGlobalStyles = createGlobalStyle`
     --accent-transparent: #a2e72393;
     --accent-transparent2: #a2e7235b;
     --accent-dark: #73c507;
+    --accent-light: #beff68;
     --secondary-accent: #f1c23f;
     --backdrop: rgba(255, 255, 255, 0.25);
+    --default-black-transparent: rgba(53, 53, 53, 0.3);
+    --default-light-transparent: rgba(235, 233, 229, 0.5);
+
 
     background-color: var(--default-light);
   }
