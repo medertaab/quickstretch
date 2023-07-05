@@ -15,12 +15,11 @@ import BackButton from "../ui/BackButton";
 import { useParams } from "react-router-dom";
 import PageLayout from "../ui/PageLayout";
 import { useAutoplay } from "../../hooks/AutoplayContext";
-import usePreloadImages from "../../hooks/usePreloadImages";
+import preloadImages from "../../utils/preloadImages";
 
 export default function Stretch() {
   const { mode } = useParams();
   const { autoplay } = useAutoplay() as any;
-  const preloadImages = usePreloadImages();
   const data = mode ? ALL_STRETCHES[mode] : ALL_STRETCHES.neck_stretch;
   const duration = data.exercises.reduce((acc: any, val: any) => {
     return (acc = acc + val.duration + 5);
@@ -46,8 +45,8 @@ export default function Stretch() {
 
   // Scroll controls into view
   useEffect(() => {
-    scrollRef.current.scrollIntoViewIfNeeded({ behavior: "instant", block: "end" });
-  }, [data, currentExercise, status);
+    scrollRef.current.scrollIntoViewIfNeeded();
+  }, [data, currentExercise, status]);
 
   useEffect(() => {
     if (data.exercises.indexOf(currentExercise) === data.exercises.length - 1) {
@@ -195,7 +194,6 @@ export default function Stretch() {
     <PageLayout>
       <StretchPage>
         <BackButton />
-
         <TextData status={status}>
           <h2>{data.title}</h2>
           <p>
