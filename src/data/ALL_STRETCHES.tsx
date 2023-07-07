@@ -1,11 +1,11 @@
-interface Exercise {
+export interface Exercise {
   title: string;
   duration: number;
   instructions: string[];
   images?: string[];
 }
 
-interface Stretch {
+export interface Stretch {
   [key: string]: {
     title: string;
     speed: number; // in ms

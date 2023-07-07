@@ -1,28 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import GlobalStyles from "./styles/GlobalStyles";
-import Stretch from "./components/stretch";
-import Homepage from "./components/homepage";
-import Breathing from "./components/breathing";
+import StretchContainer from "./components/stretchContainer";
+import IndexPage from "./components/index";
+import BreathingContainer from "./components/breathingContainer";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { AutoplayProvider } from "./hooks/AutoplayContext";
 import { RouterProvider, createHashRouter } from "react-router-dom";
-import "./index.css";
+import "./styles/index.css";
 
 const router = createHashRouter([
   {
     path: "/",
-    element: <Homepage />,
+    element: <IndexPage />,
   }, {
     path: "breathing",
-    element: <Breathing />
+    element: <BreathingContainer />
   }, {
     path: ":mode",
-    element: <Stretch/>,
-    errorElement: <Homepage />
+    element: <StretchContainer/>,
+    errorElement: <IndexPage />
   }, {
     path: "*",
-    element: <Homepage />
+    element: <IndexPage />
   }
 ]);
 

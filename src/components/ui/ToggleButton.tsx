@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 export default function ToggleButton(props : any) {
   const { on, toggle, children } = props
   return (
-    <Toggle on={on}>
+    <ToggleStyled on={on}>
       <span className="label-text">{children}</span>
       <input type="checkbox" checked={on} onChange={toggle} />
       <span className="toggle-on">
         <span className="toggle-button"></span>
       </span>
-    </Toggle>
+    </ToggleStyled>
   )
 }
 
-const Toggle = styled.label<{on : any}>`
-
+const ToggleStyled = styled.label<{on : any}>`
   .label-text {
     margin-right: 0.5rem;
   }
