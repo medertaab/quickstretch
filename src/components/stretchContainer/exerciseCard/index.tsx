@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
 import Sprite from "./sprite";
 import ExerciseContainer from "./ExerciseCard.styled";
-import preloadImages from "../../../utils/preloadImages";
 
 export default function ExerciseCard(props: any) {
   const { currentExercise, status, seconds, autoplay, speed } = props;
@@ -15,7 +13,7 @@ export default function ExerciseCard(props: any) {
 
   return (
     <ExerciseContainer status={status}>
-      <Sprite data={currentExercise} speed={speed} preloadedImages={preloadImages}/>
+      <Sprite data={currentExercise} speed={speed}/>
       <div className="exercise-info">
         {autoplay && (
           <div className="status">

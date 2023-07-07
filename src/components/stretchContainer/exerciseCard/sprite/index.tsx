@@ -42,12 +42,14 @@ export default function Sprite(props: any) {
               src={image}
               key={index}
               alt={`${data.title} demonstration`}
-              style={{opacity: index === spriteIndex ? "1" : "0"}}
+              style={{ opacity: index === spriteIndex ? "1" : "0" }}
             ></SpriteImage>
           );
         })}
       </SpriteContainer>
     );
+
+  return <></>;
 }
 
 const SpriteContainer = styled.div`
