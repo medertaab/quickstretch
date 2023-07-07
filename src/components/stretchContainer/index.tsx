@@ -12,8 +12,7 @@ import StartButton from "../ui/startButton";
 import ControlPanel from "./controlPanel";
 import CompleteModal from "./completeModal";
 import Timer from "./timer";
-import useImagePreloader from "../../hooks/useImagePreloader";
-import Loader from "../ui/loader";
+import preloadImages from "../../utils/preloadImages";
 
 export default function Stretch() {
   const { mode } = useParams();
@@ -33,18 +32,12 @@ export default function Stretch() {
   const [isComplete, setIsComplete] = useState(false);
   const [isLast, setIsLast] = useState(false);
   const [progress, setProgress] = useState<any>({});
-
-  // Preload images
-  const imageURLs = data.exercises.reduce((acc : any, val : any) => {
-    return [...acc, ...val.images]
-  }, [])
-  const { isPreloaded } = useImagePreloader(imageURLs);
-
   const timer = useRef<any>();
 
   // Start fresh
   useEffect(() => {
     clearProgress();
+    preloadImages(data.exercises[0].images as any);
   }, []);
 
   useEffect(() => {
@@ -84,6 +77,14 @@ export default function Stretch() {
       handleTimer.start();
     }
   }, [status, seconds, progress, currentExercise, data, isLast]);
+
+  // Preload images for next exercise
+  useEffect(() => {
+    const currentIndex = data.exercises.indexOf(currentExercise);
+    if (currentIndex < data.exercises.length - 1) {
+      preloadImages(data.exercises[currentIndex + 1].images as any);
+    }
+  }, [currentExercise]);
 
   const controls = {
     start: function () {
@@ -203,9 +204,7 @@ export default function Stretch() {
           setCurrentAutoplay={setCurrentAutoplay}
         />
 
-        {status === "off" && !isPreloaded && <Loader />}
-
-        {status === "off" && isPreloaded && <StartButton onClick={controls.start} />}
+        {status === "off" && <StartButton onClick={controls.start} />}
         {status !== "off" && (
           <Timer isPaused={isPaused} status={status} autoplay={currentAutoplay}>
             {seconds}

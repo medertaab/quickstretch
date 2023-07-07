@@ -3,249 +3,17 @@ import styled from "styled-components";
 export default function Loader() {
   return (
     <LoaderStyled>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="200px"
-        height="200px"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="xMidYMid"
-      >
-        <g transform="rotate(0 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.9166666666666666s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(30 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.8333333333333334s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(60 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.75s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(90 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.6666666666666666s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(120 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.5833333333333334s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(150 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.5s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(180 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.4166666666666667s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(210 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.3333333333333333s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(240 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.25s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(270 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.16666666666666666s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(300 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="-0.08333333333333333s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
-        <g transform="rotate(330 50 50)">
-          <rect
-            x="47"
-            y="24"
-            rx="3"
-            ry="6"
-            width="6"
-            height="12"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0"
-              keyTimes="0;1"
-              dur="1s"
-              begin="0s"
-              repeatCount="indefinite"
-            ></animate>
-          </rect>
-        </g>
+      <svg version="1.1" width="50px" height="50px" viewBox="0 0 50 50">
+        <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"></path>
       </svg>
     </LoaderStyled>
   );
 }
 
 export const LoaderStyled = styled.div`
-  height: 3.5rem;
-  width: 3.5rem;
+  min-height: 3.5rem;
+  min-width: 3.5rem;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   border: none;
   margin-top: 0.5rem;
@@ -259,6 +27,17 @@ export const LoaderStyled = styled.div`
     fill: var(--default-black);
     margin: auto;
     display: block;
-    height: 70%;
+    height: 2rem;
+    width: 2rem;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;

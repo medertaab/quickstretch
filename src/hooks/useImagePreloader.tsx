@@ -23,7 +23,7 @@ function useImagePreloader(images : string[]) {
     };
 
     preloadImages();
-  }, [images]);
+  }, []);
 
   return {isPreloaded};
 }

@@ -1,9 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import Header from "./Header";
 import Background from "./Background";
 import styled from "styled-components";
+import checkAllStreks from "../../utils/checkStreaks";
 
 export default function PageLayout({ children }: any) {
+  useEffect(() => {
+    checkAllStreks()
+  }, [])
   return (
     <PageLayoutStyled className="page">
       <Header />

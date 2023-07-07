@@ -1,6 +1,6 @@
 import {useState, useRef} from "react";
 import ControlButton from "./ControlButton";
-import BreathingCircle from "./breathingCircle/BreathingCircle";
+import BreathingCircle from "./breathingCircle";
 
 export default function BreathingCard() {
   const [status, setStatus] = useState({ 

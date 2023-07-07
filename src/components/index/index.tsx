@@ -2,7 +2,6 @@ import Disclaimer from "./disclaimer";
 import ModeButton from "./modeButton";
 import PageLayout from "../ui/PageLayout";
 import IndexPageStyled from "./IndexPage.styled";
-import styled from "styled-components";
 
 export default function IndexPage() {
   return (
