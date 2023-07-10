@@ -16,7 +16,9 @@ export const DescriptionStyled = styled.div<{ status: String }>`
 
   @media (max-width: 600px) {
     max-width: 100%;
+
     p {
+      padding: 0.5rem 0 1rem 0;
       display: ${(props: any) => props.status !== "off" && "none"};
     }
   }

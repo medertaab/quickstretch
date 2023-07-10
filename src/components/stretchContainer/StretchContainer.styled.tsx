@@ -20,5 +20,7 @@ export const StretchContainer = styled.main`
   @media (max-width: 550px) {
     max-height: 100%;
     max-width: 100%;
+    padding: 1rem 2rem 0rem 2rem;
+
   }
 `;

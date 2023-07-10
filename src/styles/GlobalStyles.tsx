@@ -25,6 +25,8 @@ const LightGlobalStyles = createGlobalStyle`
     --backdrop: rgba(255, 255, 255, 0.25);
 
     background-color: var(--default-light);
+
+    --mobile-width: 550px;
   }
 `;
 
@@ -42,5 +44,7 @@ const DarkGlobalStyles = createGlobalStyle`
     --backdrop: rgba(0, 0, 0, 0.25);
 
     background-color: var(--default-light);
+
+    --mobile-width: 550px;
   }
 `;

@@ -53,7 +53,7 @@ export const MenuModalStyled = styled.div`
       li {
         display: flex;
         justify-content: space-between;
-        width: 10rem;
+        width: 100%;
       }
 
       li *::first-letter {

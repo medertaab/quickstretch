@@ -58,6 +58,10 @@ const SpriteContainer = styled.div`
   position: relative;
   height: var(--sprite-height);
   min-width: 10rem;
+
+  @media (max-width: 550px) {
+    height: calc(var(--sprite-height) - 1.5rem);
+  }
 `;
 
 const SpriteImage = styled.img`

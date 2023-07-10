@@ -32,7 +32,7 @@ export default function ExerciseCard(props: any) {
           {currentExercise.title}
         </h3>
 
-        <ul>
+        <ul className="instructions">
           {currentExercise.instructions.map((instruction: string, id : number) => {
             return <li key={id}>{instruction}</li>
           })}
