@@ -14,6 +14,7 @@ const ExerciseContainer = styled.div<{ status: String }>`
 
   .exercise-info {
     flex: 1;
+    width: 100%;
   }
 
   .status {
