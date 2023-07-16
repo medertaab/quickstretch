@@ -10,9 +10,7 @@ export default function CompleteModal(props: any) {
     (value) => value === true
   );
 
-  useEffect(() => {
-    handleStreak(mode, isFullyCompleted);
-  }, []);
+  handleStreak(mode, isFullyCompleted);
 
   return (
     <CompleteModalStyled className="fade-in">
