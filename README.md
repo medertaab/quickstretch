@@ -8,7 +8,7 @@ Quickstretch is a web app that provides users with different stretch modes, each
 
 ## Usage
 
-To use Quickstretch, simply visit [the url](https://quickstretch.netlify.app/).
+To use Quickstretch, simply visit [the url](https://quickstretch.app/).
 
 ## Functionality
 

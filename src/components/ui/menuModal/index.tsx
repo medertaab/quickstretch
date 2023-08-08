@@ -65,7 +65,7 @@ export default function MenuModal(props: any) {
             );
           })}
         </ul>
-        <a href="http://medertaab.netlify.com/" className="copyright">© MT</a>
+        <a href="http://medertaab.com/" className="copyright">© MT</a>
       </div>
     </MenuModalStyled>
   );
