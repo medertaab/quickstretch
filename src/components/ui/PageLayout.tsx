@@ -6,14 +6,16 @@ import checkAllStreks from "../../utils/checkStreaks";
 
 export default function PageLayout({ children }: any) {
   useEffect(() => {
-    checkAllStreks()
-  }, [])
+    checkAllStreks();
+  }, []);
   return (
-    <PageLayoutStyled className="page">
-      <Header />
-      {children}
+    <>
+      <PageLayoutStyled className="page">
+        <Header />
+        {children}
+      </PageLayoutStyled>
       <Background />
-    </PageLayoutStyled>
+    </>
   );
 }
 
@@ -28,4 +30,5 @@ const PageLayoutStyled = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  animation: fade-in 0.125s ease-in;
 `;

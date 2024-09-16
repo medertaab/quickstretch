@@ -4,7 +4,7 @@ import ModeButtonStyled from "./ModeButton.style";
 
 
 export default function ModeButton(props: any) {
-  const { title, mode } = props;
+  const { title, mode, id } = props;
 
   const duration = ALL_STRETCHES[mode]?.exercises.reduce((acc, val) => {
     return (acc = acc + val.duration + 5);
@@ -12,7 +12,7 @@ export default function ModeButton(props: any) {
   const durationRounded = Math.round((duration / 60) * 2) / 2;
 
   return (
-    <ModeButtonStyled>
+    <ModeButtonStyled id={id} style={{animationDelay: `${id*200}ms`}}>
       <Link to={mode === "breathing" ? "/breathing" : `/${mode}`}>
         <div className="images">
           <img src={`/card_images/${mode}.png`} alt={`${mode} mode illustration`} />
@@ -23,7 +23,7 @@ export default function ModeButton(props: any) {
           />
         </div>
         <div className="information">
-          <h2>{title}</h2>
+          <h2>{title}{id}</h2>
           {mode !== "breathing" && <p>{durationRounded} min</p>}
         </div>
         <div className="playButton">
