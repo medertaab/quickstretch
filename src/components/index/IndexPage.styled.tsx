@@ -12,7 +12,8 @@ const IndexPageStyled = styled.main`
   .logo {
     display: flex;
     align-items: center;
-    animation: slide-up 200ms ease-in forwards;
+    opacity: 0%;
+    animation: slide-up 200ms ease-in 150ms forwards;
   }
 
   .logo img {
@@ -25,7 +26,7 @@ const IndexPageStyled = styled.main`
     margin: 0;
     font-size: 0.9rem;
     opacity: 0%;
-    animation: slide-up 200ms ease-in 150ms forwards;
+    animation: slide-up 200ms ease-in 300ms forwards;
   }
 
   .prompt {
@@ -33,7 +34,7 @@ const IndexPageStyled = styled.main`
     font-size: 0.9rem;
     font-weight: 500;
     opacity: 0%;
-    animation: slide-up 200ms ease-in 300ms forwards;
+    animation: slide-up 200ms ease-in 450ms forwards;
   }
 
   .mode-list {

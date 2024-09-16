@@ -3,18 +3,26 @@ import Header from "./Header";
 import Background from "./Background";
 import styled from "styled-components";
 import checkAllStreks from "../../utils/checkStreaks";
+import { useBg } from "../../hooks/BgContext";
+import { useLocation } from "react-router-dom";
 
 export default function PageLayout({ children }: any) {
+  const { setIsHomepage } = useBg() as any;
+  const inExercise = useLocation().pathname !== "/";
+
   useEffect(() => {
+    if (inExercise) setIsHomepage(false);
+    else setIsHomepage(true);
+
     checkAllStreks();
   }, []);
+
   return (
     <>
       <PageLayoutStyled className="page">
         <Header />
         {children}
       </PageLayoutStyled>
-      <Background />
     </>
   );
 }

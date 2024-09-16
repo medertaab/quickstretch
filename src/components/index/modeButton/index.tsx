@@ -12,7 +12,7 @@ export default function ModeButton(props: any) {
   const durationRounded = Math.round((duration / 60) * 2) / 2;
 
   return (
-    <ModeButtonStyled id={id} style={{animationDelay: `${id*200}ms`}}>
+    <ModeButtonStyled id={id} style={{animationDelay: `${(id*200)+450}ms`}}>
       <Link to={mode === "breathing" ? "/breathing" : `/${mode}`}>
         <div className="images">
           <img src={`/card_images/${mode}.png`} alt={`${mode} mode illustration`} />
@@ -23,7 +23,7 @@ export default function ModeButton(props: any) {
           />
         </div>
         <div className="information">
-          <h2>{title}{id}</h2>
+          <h2>{title}</h2>
           {mode !== "breathing" && <p>{durationRounded} min</p>}
         </div>
         <div className="playButton">

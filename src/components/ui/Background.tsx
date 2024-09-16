@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTheme } from "../../hooks/ThemeContext";
-import { useLocation } from "react-router-dom";
+import { useBg } from "../../hooks/BgContext";
 
 export default function Background() {
   const { theme } = useTheme() as any;
-  const inExercise = useLocation().pathname !== "/"
+  const { isHomepage } = useBg() as any;
 
   return (
-    <FlowingBackground theme={theme} inExercise={inExercise}>
+    <FlowingBackground theme={theme} isHomepage={isHomepage}>
       <div className="star-container">
         <svg
           className="star"
@@ -40,7 +39,7 @@ export default function Background() {
   );
 }
 
-const FlowingBackground = styled.div<{ theme: String, inExercise: Boolean }>`
+const FlowingBackground = styled.div<{ theme: String; isHomepage: Boolean }>`
   max-height: 100%;
   inset: 0;
   position: fixed;
@@ -56,9 +55,8 @@ const FlowingBackground = styled.div<{ theme: String, inExercise: Boolean }>`
     margin-top: 3rem;
     width: 30rem;
     position: relative;
-    scale: ${(props) => props.inExercise && '180%'};
+    scale: ${(props) => props.isHomepage ? "100%" : "160%"};
     transition: 1s ease-in-out;
-
   }
 
   .star {
