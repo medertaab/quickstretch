@@ -8,16 +8,21 @@ export const BreathingContainerStyled = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   position: relative;
   background-color: var(--default-light-transparent);
   border-radius: 1rem;
   cursor: default;
+  animation: fade-in 300ms ease-in forwards;
+  min-height: 620px;
 
   .button-back {
     left: 0;
     margin-left: 1rem;
     position: absolute;
+    margin-bottom: auto;
+    top: 2rem;
 
     img {
       height: 1.5rem;

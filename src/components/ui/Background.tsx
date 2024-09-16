@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useTheme } from "../../hooks/ThemeContext";
-import { useBg } from "../../hooks/BgContext";
+import { useLocation } from "react-router-dom";
 
 export default function Background() {
   const { theme } = useTheme() as any;
-  const { isHomepage } = useBg() as any;
+  const isHomepage = useLocation().pathname == "/"
 
   return (
     <FlowingBackground theme={theme} isHomepage={isHomepage}>

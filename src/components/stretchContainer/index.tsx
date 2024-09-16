@@ -184,50 +184,48 @@ export default function Stretch() {
   };
 
   return (
-    <PageLayout>
-      <StretchContainer>
-        <BackButton />
+    <StretchContainer>
+      <BackButton />
 
-        <Description data={data} status={status} />
+      <Description data={data} status={status} />
 
-        <ExerciseCard
-          currentExercise={currentExercise}
-          status={status}
-          seconds={seconds}
-          autoplay={currentAutoplay}
-          speed={data.speed}
-        />
+      <ExerciseCard
+        currentExercise={currentExercise}
+        status={status}
+        seconds={seconds}
+        autoplay={currentAutoplay}
+        speed={data.speed}
+      />
 
-        <ProgressionPanel
+      <ProgressionPanel
+        progress={progress}
+        currentAutoplay={currentAutoplay}
+        setCurrentAutoplay={setCurrentAutoplay}
+      />
+
+      {status === "off" && <StartButton onClick={controls.start} />}
+      {status !== "off" && (
+        <Timer isPaused={isPaused} status={status} autoplay={currentAutoplay}>
+          {seconds}
+        </Timer>
+      )}
+
+      <ControlPanel
+        controls={controls}
+        currentAutoplay={currentAutoplay}
+        status={status}
+        isPaused={isPaused}
+        isLast={isLast}
+      />
+
+      {isComplete && (
+        <CompleteModal
+          mode={mode}
+          title={data.title}
+          setIsComplete={setIsComplete}
           progress={progress}
-          currentAutoplay={currentAutoplay}
-          setCurrentAutoplay={setCurrentAutoplay}
         />
-
-        {status === "off" && <StartButton onClick={controls.start} />}
-        {status !== "off" && (
-          <Timer isPaused={isPaused} status={status} autoplay={currentAutoplay}>
-            {seconds}
-          </Timer>
-        )}
-
-        <ControlPanel
-          controls={controls}
-          currentAutoplay={currentAutoplay}
-          status={status}
-          isPaused={isPaused}
-          isLast={isLast}
-        />
-
-        {isComplete && (
-          <CompleteModal
-            mode={mode}
-            title={data.title}
-            setIsComplete={setIsComplete}
-            progress={progress}
-          />
-        )}
-      </StretchContainer>
-    </PageLayout>
+      )}
+    </StretchContainer>
   );
 }
